@@ -90,6 +90,35 @@
     font-family:'Work Sans', sans-serif;
   }
   .submit-btn:hover{opacity:.92;}
+
+  /* ---------- success screen ---------- */
+  #successScreen{display:none; max-width:680px; margin:0 auto; padding:50px 6vw 80px;}
+  .success-box{
+    background:#fff; border:1px solid var(--line); border-radius:8px; padding:34px 26px; text-align:center;
+  }
+  .success-box .tick{font-size:42px; margin-bottom:14px;}
+  .success-box h2{font-family:'Amiri', serif; color:var(--navy); font-size:24px; margin-bottom:10px;}
+  .success-box p{color:var(--mist); font-size:14.5px; margin-bottom:26px;}
+  .success-actions{display:flex; flex-direction:column; gap:12px;}
+  .wa-send-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:#25D366; color:#fff; padding:14px; border-radius:6px; font-weight:600; font-size:14.5px;
+    text-decoration:none;
+  }
+  .print-btn{
+    background:var(--navy); color:#fff; border:none; padding:14px; border-radius:6px;
+    font-weight:600; font-size:14.5px; cursor:pointer; font-family:'Work Sans', sans-serif;
+  }
+  #printSummary{display:none;}
+  @media print{
+    header, .success-actions, footer{display:none !important;}
+    #successScreen{display:block !important;}
+    .success-box{border:none;}
+    #printSummary{display:block !important; text-align:left; margin-top:20px;}
+    #printSummary h3{font-family:'Amiri', serif; color:var(--navy); margin:16px 0 8px; border-bottom:1px solid #ccc; padding-bottom:4px;}
+    #printSummary .pline{font-size:13px; margin-bottom:5px;}
+    #printSummary .pline b{display:inline-block; min-width:180px;}
+  }
   .note{font-size:12.5px; color:var(--mist); text-align:center; margin-top:14px;}
 
   footer{
@@ -106,7 +135,7 @@
   <a href="index.html" class="back-link">← Back to Home</a>
 </header>
 
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<form id="admissionForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 
   <div class="fsec">
     <h2>Student Information</h2>
@@ -334,6 +363,63 @@
   <button type="submit" class="submit-btn">Submit Admission Form</button>
   <p class="note">Your form will be reviewed by our office and you will be contacted via the mobile number provided.</p>
 </form>
+
+<div id="successScreen">
+  <div class="success-box">
+    <div class="tick">✅</div>
+    <h2>Form Submitted Successfully</h2>
+    <p>Your admission form has been received. Please tap below to forward a copy to the school office via WhatsApp, and/or print a copy for your records.</p>
+    <div class="success-actions">
+      <a id="waSubhan" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Subhan Ullah</a>
+      <a id="waImdad" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Imdad Ullah</a>
+      <a id="waNadeem" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Nadeem Ullah</a>
+      <button type="button" class="print-btn" onclick="window.print()">🖨️ Print Admission Form</button>
+    </div>
+    <div id="printSummary"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('admissionForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  var formData = new FormData(form);
+
+  // Build a readable summary of all filled fields
+  var lines = [];
+  var printLines = [];
+  lines.push("*THE IQRA ISLAMIC EDUCATIONAL SYSTEM — Admission Form*");
+  printLines.push('<h3>Submitted Admission Form</h3>');
+  for (var pair of formData.entries()) {
+    var key = pair[0];
+    var val = pair[1];
+    if (val && val.toString().trim() !== "") {
+      lines.push(key + ": " + val);
+      printLines.push('<div class="pline"><b>' + key + ':</b> ' + val + '</div>');
+    }
+  }
+  var summaryText = lines.join("\n");
+  document.getElementById('printSummary').innerHTML = printLines.join("");
+
+  // Set up WhatsApp forward links with the prefilled summary
+  var encoded = encodeURIComponent(summaryText);
+  document.getElementById('waSubhan').href = "https://wa.me/923440929329?text=" + encoded;
+  document.getElementById('waImdad').href = "https://wa.me/923459818813?text=" + encoded;
+  document.getElementById('waNadeem').href = "https://wa.me/923412565659?text=" + encoded;
+
+  // Submit to Formspree in the background
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).finally(function(){
+    form.style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo(0,0);
+  });
+});
+</script>
+
 
 <footer>
   © 2026 <strong style="color:#fff;">The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
