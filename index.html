@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Iqra Islamic Educational System (IIES) — Puran, Shangla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10193F;
+    --royal:#1B2C6B;
+    --gold:#C9A227;
+    --paper:#FAF6ED;
+    --ink:#1E2430;
+    --mist:#5B6478;
+    --line: rgba(16,25,63,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .display{font-family:'Amiri', serif;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 6vw;}
+
+  /* ---------- nav ---------- */
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 6vw;
+    position:sticky; top:0; z-index:60;
+    background:rgba(250,246,237,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{width:42px; height:42px; border-radius:50%;}
+  .brand .b-text{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.2; color:var(--navy);}
+  .brand .b-text span{display:block; font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.12em; color:var(--gold); font-weight:600;}
+  nav .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--navy);}
+  @media(max-width:800px){ nav .links{display:none;} }
+  .nav-cta{
+    background:var(--navy); color:var(--paper);
+    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(circle at 80% 10%, rgba(201,162,39,0.15), transparent 45%), var(--navy);
+    color:var(--paper);
+    padding:80px 6vw 0;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero-logo{width:120px; height:120px; border-radius:50%; margin-bottom:26px; box-shadow:0 0 0 4px rgba(201,162,39,0.35);}
+  .eyebrow{
+    font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:16px; font-weight:600;
+  }
+  .hero h1{
+    font-family:'Amiri', serif;
+    font-size:clamp(30px,5.2vw,50px);
+    font-weight:700;
+    line-height:1.2;
+    max-width:820px; margin:0 auto 10px;
+  }
+  .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
+  .hero .tagline{
+    font-family:'Amiri', serif; font-style:italic;
+    font-size:19px; color:#D9DCEA; margin-bottom:8px;
+  }
+  .hero .loc{font-size:13.5px; color:#B9C0D6; margin-bottom:34px;}
+  .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:60px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 28px; border-radius:3px; font-weight:600; font-size:14.5px;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-gold{background:var(--gold); color:var(--navy);}
+  .btn-outline{border:1px solid rgba(250,246,237,0.4); color:var(--paper);}
+
+  .arch-divider{display:block; width:100%; height:auto;}
+
+  /* ---------- section shared ---------- */
+  .section{padding:74px 6vw;}
+  .section-head{text-align:center; max-width:700px; margin:0 auto 46px;}
+  .kicker{
+    font-size:12px; color:var(--gold); letter-spacing:.18em; text-transform:uppercase;
+    font-weight:700; margin-bottom:10px;
+  }
+  .section h2{
+    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700; color:var(--navy);
+    margin-bottom:14px;
+  }
+  .section p.lede{color:var(--mist); font-size:15.5px; line-height:1.75;}
+
+  /* ---------- intro ---------- */
+  .intro-grid{
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:50px; align-items:start;
+    max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:760px){ .intro-grid{grid-template-columns:1fr;} }
+  .iqra-badge{
+    background:var(--navy); color:var(--paper); border-radius:8px; padding:28px 24px;
+    text-align:center;
+  }
+  .iqra-badge .word{font-family:'Amiri', serif; font-size:38px; color:var(--gold); font-weight:700;}
+  .iqra-badge .mean{font-size:13px; color:#C7CCDE; margin-top:6px;}
+  .intro-grid p{font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;}
+
+  /* ---------- vision/mission ---------- */
+  .vm-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:30px;
+    max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:720px){ .vm-grid{grid-template-columns:1fr;} }
+  .vm-card{
+    background:#fff; border:1px solid var(--line); border-radius:8px; padding:32px 28px;
+  }
+  .vm-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:22px; margin-bottom:14px;}
+  .vm-card p{font-size:14.5px; color:var(--mist); line-height:1.75; margin-bottom:14px;}
+  .vm-card ul{padding-left:18px; font-size:14px; color:var(--ink); line-height:2;}
+
+  /* ---------- pillars (academic / islamic / character) ---------- */
+  .pillars{background:var(--navy); color:var(--paper);}
+  .pillars .kicker{color:var(--gold);}
+  .pillars .section-head h2{color:#fff;}
+  .pillar-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:1px; background:rgba(250,246,237,0.14);
+    border:1px solid rgba(250,246,237,0.14);
+    max-width:1100px; margin:0 auto;
+  }
+  .pillar-card{background:var(--navy); padding:34px 28px;}
+  .pillar-card .icon{font-size:26px; margin-bottom:16px; display:block;}
+  .pillar-card h3{font-family:'Amiri', serif; font-size:20px; margin-bottom:14px; color:var(--gold);}
+  .pillar-card ul{list-style:none; font-size:13.5px; color:#C7CCDE; line-height:2.1;}
+  .pillar-card ul li::before{content:"— "; color:var(--gold);}
+
+  /* ---------- character values ---------- */
+  .values-strip{
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+    max-width:900px; margin:0 auto;
+  }
+  .val-pill{
+    font-size:13px; border:1px solid var(--line); border-radius:20px;
+    padding:9px 20px; color:var(--navy); background:#fff; font-weight:500;
+  }
+
+  /* ---------- leadership ---------- */
+  .lead-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:36px; max-width:960px; margin:0 auto;
+  }
+  .lead-card{text-align:center;}
+  .arch-photo{
+    width:190px; height:230px; margin:0 auto 18px;
+    border-radius:95px 95px 8px 8px;
+    overflow:hidden;
+    border:3px solid var(--gold);
+  }
+  .arch-photo img{width:100%; height:100%; object-fit:cover;}
+  .lead-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:19px; margin-bottom:4px;}
+  .lead-card .role{font-size:12.5px; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; font-weight:600;}
+
+  /* ---------- discipline / partnership strip ---------- */
+  .two-col{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin:0 auto;
+  }
+  @media(max-width:720px){ .two-col{grid-template-columns:1fr;} }
+  .two-col .block h3{font-family:'Amiri', serif; color:var(--navy); font-size:20px; margin-bottom:12px;}
+  .two-col .block p{font-size:14.5px; color:var(--mist); line-height:1.8;}
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:20px; max-width:1100px; margin:0 auto;
+  }
+  .gallery-item{
+    border-radius:6px; overflow:hidden; border:1px solid var(--line); background:#fff;
+  }
+  .gallery-item img{width:100%; height:220px; object-fit:cover; display:block;}
+  .gallery-item .cap{
+    padding:10px 14px; font-size:12px; color:var(--mist); text-align:center;
+  }
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--royal); color:var(--paper);}
+  .contact .section-head h2{color:#fff;}
+  .contact-card{
+    max-width:700px; margin:0 auto; background:var(--navy);
+    border-radius:8px; padding:40px 34px; text-align:center;
+  }
+  .contact-card .row{font-size:15px; margin-bottom:12px; color:#DEE1EC;}
+  .contact-card .row strong{color:var(--gold); font-weight:600;}
+  .contact-cta-row{margin-top:24px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  footer{
+    background:var(--navy); color:#9AA2BC; text-align:center; padding:28px 6vw; font-size:12.5px;
+  }
+  footer strong{color:var(--paper);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img src="assets/logo.jpg" alt="IIES Logo">
+    <div class="b-text">The Iqra Islamic<br>Educational System<span>IIES · PURAN, SHANGLA</span></div>
+  </div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#academics">Academics</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#events">Events</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Admissions</a>
+</nav>
+
+<section class="hero">
+  <img src="assets/logo.jpg" class="hero-logo" alt="The Iqra Islamic Educational System">
+  <div class="eyebrow">Puran · Shangla · Khyber Pakhtunkhwa</div>
+  <h1>The Iqra Islamic Educational System</h1>
+  <div class="short">IIES</div>
+  <p class="tagline">"Come to Know, Go to Glow"</p>
+  <p class="loc">📍 Aloch Puran, District Shangla, Khyber Pakhtunkhwa, Pakistan</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn btn-gold">Apply for Admission</a>
+    <a href="#about" class="btn btn-outline">Learn More</a>
+  </div>
+  <svg class="arch-divider" viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path d="M0,60 L0,20 Q150,60 300,20 Q450,-10 600,20 Q750,60 900,20 Q1050,-10 1200,20 L1200,60 Z" fill="#FAF6ED"></path>
+  </svg>
+</section>
+
+<section class="section" id="about">
+  <div class="intro-grid">
+    <div class="iqra-badge">
+      <div class="word">اقرأ</div>
+      <div class="word" style="font-size:22px; margin-top:6px;">Iqra</div>
+      <div class="mean">"Read" — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ</div>
+    </div>
+    <div>
+      <div class="kicker">Introduction</div>
+      <h2 style="margin-bottom:16px;">Where Faith Meets Modern Learning</h2>
+      <p>The Iqra Islamic Educational System Puran is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
+      <p>By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand.</p>
+      <p>The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">Guiding Principles</div>
+    <h2>Vision &amp; Mission</h2>
+  </div>
+  <div class="vm-grid">
+    <div class="vm-card">
+      <h3>Our Vision</h3>
+      <p>To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values.</p>
+    </div>
+    <div class="vm-card">
+      <h3>Our Mission</h3>
+      <ul>
+        <li>High-quality education in modern and Islamic subjects</li>
+        <li>Strong moral character and Islamic ethics</li>
+        <li>Creativity, innovation, and critical thinking</li>
+        <li>Leadership qualities and self-confidence</li>
+        <li>A safe, peaceful, and inspiring learning environment</li>
+        <li>Strong cooperation between teachers, students, and parents</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section pillars" id="academics">
+  <div class="section-head">
+    <div class="kicker">What We Teach</div>
+    <h2>Academic Excellence &amp; Islamic Education</h2>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <span class="icon">📘</span>
+      <h3>Modern Subjects</h3>
+      <ul>
+        <li>English</li>
+        <li>Mathematics</li>
+        <li>Science</li>
+        <li>Computer Studies</li>
+        <li>Urdu</li>
+        <li>Social Studies</li>
+        <li>General Knowledge</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <span class="icon">☪️</span>
+      <h3>Islamic Studies</h3>
+      <ul>
+        <li>Holy Qur'an with proper Tajweed</li>
+        <li>Islamiat &amp; Aqeedah</li>
+        <li>Seerah of Prophet Muhammad ﷺ</li>
+        <li>Islamic history</li>
+        <li>Daily Sunnahs &amp; etiquette</li>
+        <li>Duas for everyday life</li>
+      </ul>
+    </div>
+    <div class="pillar-card">
+      <span class="icon">🌱</span>
+      <h3>Character Building</h3>
+      <ul>
+        <li>Honesty &amp; truthfulness</li>
+        <li>Respect &amp; humility</li>
+        <li>Patience &amp; responsibility</li>
+        <li>Discipline &amp; teamwork</li>
+        <li>Kindness &amp; compassion</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">Core Values</div>
+    <h2>What We Instill in Every Student</h2>
+  </div>
+  <div class="values-strip">
+    <span class="val-pill">Honesty</span>
+    <span class="val-pill">Discipline</span>
+    <span class="val-pill">Respect</span>
+    <span class="val-pill">Kindness</span>
+    <span class="val-pill">Responsibility</span>
+    <span class="val-pill">Patience</span>
+    <span class="val-pill">Teamwork</span>
+    <span class="val-pill">Compassion</span>
+  </div>
+</section>
+
+<section class="section" id="leadership">
+  <div class="section-head">
+    <div class="kicker">Our Leadership</div>
+    <h2>Principal &amp; Vice Principal</h2>
+  </div>
+  <div class="lead-grid" style="max-width:520px; margin-bottom:64px;">
+    <div class="lead-card">
+      <div class="arch-photo"><img src="assets/principal.jpg" alt="Sir Fazal Azim"></div>
+      <h3>Sir Fazal Azim</h3>
+      <div class="role">Principal</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="assets/vice-principal.jpg" alt="Sir Nadeem Ullah"></div>
+      <h3>Sir Nadeem Ullah</h3>
+      <div class="role">Vice Principal</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Our Leadership</div>
+    <h2>School Owners</h2>
+  </div>
+  <div class="lead-grid">
+    <div class="lead-card">
+      <div class="arch-photo"><img src="assets/owner1.jpg" alt="Sir Subhan Ullah"></div>
+      <h3>Sir Subhan Ullah</h3>
+      <div class="role">Owner</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="assets/owner2.jpg" alt="Sir Imdad Ullah Momin"></div>
+      <h3>Sir Imdad Ullah Momin</h3>
+      <div class="role">Owner</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="assets/owner3.jpg" alt="Sir Muhammad Hussain"></div>
+      <h3>Sir Muhammad Hussain</h3>
+      <div class="role">Owner</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">Our Team</div>
+    <h2>Teaching Staff</h2>
+    <p class="lede">Our dedicated teachers who guide, mentor, and inspire every student at IIES.</p>
+  </div>
+  <div style="max-width:900px; margin:0 auto; border-radius:8px; overflow:hidden; border:1px solid var(--line);">
+    <img src="assets/teachers-group.jpg" alt="IIES Teaching Staff" style="width:100%; display:block;">
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="events">
+  <div class="section-head">
+    <div class="kicker">School Life</div>
+    <h2>Awards Distribution Ceremony</h2>
+    <p class="lede">Celebrating our students' hard work and our teachers' dedication — moments from the Term Exam Award Ceremony at IIES.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="assets/event-4.jpg" alt="Award ceremony"><div class="cap">Position holders receiving awards</div></div>
+    <div class="gallery-item"><img src="assets/event-1.jpg" alt="Award ceremony collage"><div class="cap">Students with their achievement awards</div></div>
+    <div class="gallery-item"><img src="assets/event-2.jpg" alt="Award ceremony collage"><div class="cap">Students with their achievement awards</div></div>
+    <div class="gallery-item"><img src="assets/event-3.jpg" alt="Awards ready for distribution"><div class="cap">Awards prepared for distribution</div></div>
+    <div class="gallery-item"><img src="assets/event-7.jpg" alt="Best Teacher Award"><div class="cap">Best Teacher Award</div></div>
+    <div class="gallery-item"><img src="assets/event-6.jpg" alt="Best Proctor Award"><div class="cap">Best Proctor Award</div></div>
+    <div class="gallery-item"><img src="assets/event-5.jpg" alt="Student receiving award"><div class="cap">Student receiving position award</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">School Life</div>
+    <h2>Parents-Teachers Meeting</h2>
+    <p class="lede">Strengthening the partnership between families and teachers to support every student's growth.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="assets/ptm-1.jpg" alt="Parents-Teachers Meeting"><div class="cap">PTM session with parents and staff</div></div>
+    <div class="gallery-item"><img src="assets/ptm-2.jpg" alt="Parents-Teachers Meeting"><div class="cap">PTM session with parents and staff</div></div>
+    <div class="gallery-item"><img src="assets/ptm-3.jpg" alt="Parents-Teachers Meeting"><div class="cap">PTM session with parents and staff</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="section-head">
+    <div class="kicker">Sports</div>
+    <h2>IIES Cricket Team</h2>
+    <p class="lede">Sports build teamwork, discipline, and confidence — our cricket team proudly representing IIES.</p>
+  </div>
+  <div class="gallery-grid" style="grid-template-columns:repeat(auto-fit, minmax(320px,1fr));">
+    <div class="gallery-item"><img src="assets/cricket-2.jpg" alt="IIES Cricket Team" style="height:280px;"><div class="cap">The IIES Cricket Team with their trophies</div></div>
+    <div class="gallery-item"><img src="assets/cricket-1.jpg" alt="IIES Cricket Team players with trophies" style="height:280px;"><div class="cap">Players celebrating their achievements</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">Daily Routine</div>
+    <h2>Morning Assembly &amp; Khatm-ul-Qur'an</h2>
+    <p class="lede">Every day begins with the morning assembly, followed by collective Qur'an recitation — instilling discipline, unity, and spiritual connection in our students.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="assets/assembly-1.jpg" alt="Morning assembly at IIES"><div class="cap">Students standing for the morning assembly</div></div>
+    <div class="gallery-item"><img src="assets/assembly-2.jpg" alt="Khatm-ul-Quran recitation"><div class="cap">Students reciting the Holy Qur'an after assembly</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);" id="videos">
+  <div class="section-head">
+    <div class="kicker">Watch</div>
+    <h2>School Life in Motion</h2>
+    <p class="lede">A closer look at everyday life, events, and activities at IIES.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><video src="assets/school-video-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="assets/school-video-2.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="assets/school-video-3.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="assets/school-video-4.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+    <div class="gallery-item"><video src="assets/school-video-5.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">School moments</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
+  <div class="two-col">
+    <div class="block">
+      <h3>Discipline</h3>
+      <p>Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school.</p>
+    </div>
+    <div class="block">
+      <h3>Parental Partnership</h3>
+      <p>Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child's achievements alongside the school.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="section-head">
+    <div class="kicker">Get In Touch</div>
+    <h2>Admissions &amp; Inquiries</h2>
+  </div>
+  <div class="contact-card">
+    <div class="row"><strong>School</strong> — The Iqra Islamic Educational System (IIES)</div>
+    <div class="row"><strong>Location</strong> — Aloch Puran, District Shangla, KPK, Pakistan</div>
+    <div class="row"><strong>Owners</strong> — Sir Subhan Ullah &amp; Sir Imdad Ullah Momin</div>
+    <div class="row"><strong>Email</strong> — <a href="mailto:imdadullahmomen@gmail.com" style="color:var(--gold);">imdadullahmomen@gmail.com</a></div>
+    <div class="contact-cta-row">
+      <a href="https://wa.me/923459818813" class="btn btn-gold">💬 WhatsApp — Sir Imdad Ullah</a>
+      <a href="https://wa.me/923440929329" class="btn btn-gold">💬 WhatsApp — Sir Subhan Ullah</a>
+      <a href="mailto:imdadullahmomen@gmail.com" class="btn btn-outline">✉ Email Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <strong>The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
+</footer>
+
+</body>
+</html>
