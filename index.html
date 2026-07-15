@@ -475,6 +475,29 @@
 </section>
 
 <section class="section" style="background:#fff;">
+  <div class="section-head">
+    <div class="kicker">Academics</div>
+    <h2>Examination Hall</h2>
+    <p class="lede">A glimpse of our examination hall, where students sit for their term exams in a calm and disciplined environment.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><video src="result-day-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Examination hall</div></div>
+    <div class="gallery-item"><video src="result-day-2.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Examination hall</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="section-head">
+    <div class="kicker">School Life</div>
+    <h2>Result Day — Award Distribution</h2>
+    <p class="lede">Celebrating our students' achievements on result day, as top performers receive their awards.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><video src="exam-hall-1.mp4" controls playsinline style="width:100%; aspect-ratio:16/10; object-fit:cover; background:#000;"></video><div class="cap">Result day award distribution</div></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;">
   <div class="two-col">
     <div class="block">
       <h3>Discipline</h3>
@@ -509,7 +532,15 @@
 
 <footer>
   © 2026 <strong>The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
+  <div style="margin-top:10px; font-size:11.5px; opacity:.7;">👁️ Total Visits: <span id="visitCount">…</span></div>
 </footer>
+
+<script>
+  fetch('https://api.countapi.xyz/hit/iies-puran-shangla-kpk/visits')
+    .then(function(res){ return res.json(); })
+    .then(function(data){ document.getElementById('visitCount').innerText = data.value; })
+    .catch(function(){ document.getElementById('visitCount').innerText = '—'; });
+</script>
 
 </body>
 </html>
