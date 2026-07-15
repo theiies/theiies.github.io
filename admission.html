@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admission Form — The Iqra Islamic Educational System (IIES)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#10193F;
+    --royal:#1B2C6B;
+    --gold:#C9A227;
+    --paper:#FAF6ED;
+    --ink:#1E2430;
+    --mist:#5B6478;
+    --line: rgba(16,25,63,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .display{font-family:'Amiri', serif;}
+
+  header{
+    background:var(--navy); color:var(--paper);
+    text-align:center; padding:44px 6vw 40px;
+  }
+  header .eyebrow{
+    font-size:11px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:14px; font-weight:600;
+  }
+  header h1{
+    font-family:'Amiri', serif; font-size:clamp(24px,5vw,34px); font-weight:700;
+    margin-bottom:8px;
+  }
+  header .tag{font-size:13px; color:#B9C0D6; font-style:italic; font-family:'Amiri', serif;}
+  .back-link{
+    display:inline-block; margin-top:20px; font-size:13px; color:var(--gold);
+    text-decoration:none; border:1px solid rgba(201,162,39,0.4); padding:8px 18px; border-radius:20px;
+  }
+
+  form{max-width:680px; margin:0 auto; padding:40px 6vw 80px;}
+  .fsec{
+    background:#fff; border:1px solid var(--line); border-radius:8px;
+    padding:28px 24px; margin-bottom:24px;
+  }
+  .fsec h2{
+    font-family:'Amiri', serif; color:var(--navy); font-size:19px; font-weight:700;
+    margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid var(--line);
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block; font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;
+  }
+  .field label .req{color:var(--royal);}
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field input[type="date"],
+  .field select,
+  .field textarea{
+    width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:5px;
+    font-family:'Work Sans', sans-serif; font-size:14.5px; color:var(--ink); background:var(--paper);
+  }
+  .field textarea{resize:vertical; min-height:70px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media(max-width:520px){ .row2{grid-template-columns:1fr;} }
+  .radio-group, .check-group{display:flex; flex-wrap:wrap; gap:18px; margin-top:4px;}
+  .radio-group label, .check-group label{
+    display:flex; align-items:center; gap:7px; font-size:14px; font-weight:400; color:var(--ink);
+  }
+  .radio-group input, .check-group input{width:16px; height:16px; accent-color:var(--royal);}
+  .check-list{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+  .check-list label{display:flex; align-items:flex-start; gap:9px; font-size:14px; font-weight:400;}
+  .check-list input{width:16px; height:16px; margin-top:2px; accent-color:var(--royal); flex-shrink:0;}
+
+  .declaration-box{
+    background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:16px;
+    font-size:13.5px; color:var(--mist); line-height:1.7; margin-bottom:16px;
+  }
+
+  .submit-btn{
+    width:100%; padding:15px; background:var(--gold); color:var(--navy);
+    border:none; border-radius:5px; font-size:16px; font-weight:700; cursor:pointer;
+    font-family:'Work Sans', sans-serif;
+  }
+  .submit-btn:hover{opacity:.92;}
+  .note{font-size:12.5px; color:var(--mist); text-align:center; margin-top:14px;}
+
+  footer{
+    background:var(--navy); color:#9AA2BC; text-align:center; padding:26px 6vw; font-size:12.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Aloch Puran · Shangla · KPK</div>
+  <h1>THE IQRA ISLAMIC EDUCATIONAL SYSTEM</h1>
+  <div class="tag">"Knowledge • Character • Faith • Excellence"</div>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</header>
+
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+  <div class="fsec">
+    <h2>Student Information</h2>
+    <div class="field">
+      <label>Class Applied For <span class="req">*</span></label>
+      <select name="Class Applied For">
+        <option value="">Select class</option>
+        <option>Nursery</option><option>KG</option><option>1st</option><option>2nd</option>
+        <option>3rd</option><option>4th</option><option>5th</option><option>6th</option>
+        <option>7th</option><option>8th</option><option>9th</option><option>10th</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Student Name <span class="req">*</span></label>
+      <input type="text" name="Student Name">
+    </div>
+    <div class="field">
+      <label>Gender <span class="req">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="Gender" value="Male"> Male</label>
+        <label><input type="radio" name="Gender" value="Female"> Female</label>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Date of Birth <span class="req">*</span></label>
+        <input type="date" name="Date of Birth">
+      </div>
+      <div class="field">
+        <label>B-Form No.</label>
+        <input type="text" name="B-Form No.">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Nationality</label>
+        <input type="text" name="Nationality" value="Pakistani">
+      </div>
+      <div class="field">
+        <label>Religion</label>
+        <input type="text" name="Religion" value="Islam">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Mother Tongue</label>
+        <input type="text" name="Mother Tongue">
+      </div>
+      <div class="field">
+        <label>Blood Group</label>
+        <select name="Blood Group">
+          <option value="">Select</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+          <option>Unknown</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Previous School</label>
+      <input type="text" name="Previous School">
+    </div>
+    <div class="field">
+      <label>Last Class Passed</label>
+      <select name="Last Class Passed">
+        <option value="">Select class</option>
+        <option>None (First time in school)</option>
+        <option>Nursery</option><option>KG</option><option>1st</option><option>2nd</option>
+        <option>3rd</option><option>4th</option><option>5th</option><option>6th</option>
+        <option>7th</option><option>8th</option><option>9th</option><option>10th</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Father's Information</h2>
+    <div class="field">
+      <label>Father's Name <span class="req">*</span></label>
+      <input type="text" name="Father's Name">
+    </div>
+    <div class="field">
+      <label>CNIC No.</label>
+      <input type="text" name="Father CNIC" placeholder="XXXXX-XXXXXXX-X">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Qualification</label>
+        <input type="text" name="Father Qualification">
+      </div>
+      <div class="field">
+        <label>Occupation</label>
+        <select name="Father Occupation">
+          <option value="">Select</option>
+          <option>Government Employee</option>
+          <option>Private Employee</option>
+          <option>Business / Self-Employed</option>
+          <option>Farmer</option>
+          <option>Laborer</option>
+          <option>Teacher</option>
+          <option>Doctor / Health Worker</option>
+          <option>Driver</option>
+          <option>Abroad / Overseas Worker</option>
+          <option>Retired</option>
+          <option>Unemployed</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Mobile No. <span class="req">*</span></label>
+        <input type="tel" name="Father Mobile">
+      </div>
+      <div class="field">
+        <label>WhatsApp No.</label>
+        <input type="tel" name="Father WhatsApp">
+      </div>
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Residential Address</h2>
+    <div class="row2">
+      <div class="field">
+        <label>House No.</label>
+        <input type="text" name="House No.">
+      </div>
+      <div class="field">
+        <label>Village/Area</label>
+        <input type="text" name="Village/Area">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Tehsil</label>
+        <input type="text" name="Tehsil" value="Puran">
+      </div>
+      <div class="field">
+        <label>District</label>
+        <input type="text" name="District" value="Shangla">
+      </div>
+    </div>
+    <div class="field">
+      <label>Postal Code</label>
+      <input type="text" name="Postal Code">
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Emergency Contact</h2>
+    <div class="field">
+      <label>Name</label>
+      <input type="text" name="Emergency Name">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Relationship</label>
+        <select name="Emergency Relationship">
+          <option value="">Select</option>
+          <option>Father</option>
+          <option>Mother</option>
+          <option>Grandfather</option>
+          <option>Grandmother</option>
+          <option>Uncle</option>
+          <option>Aunt</option>
+          <option>Elder Brother</option>
+          <option>Elder Sister</option>
+          <option>Other Relative</option>
+          <option>Neighbor / Family Friend</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Mobile No.</label>
+        <input type="tel" name="Emergency Mobile">
+      </div>
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Documents Attached</h2>
+    <div class="check-list">
+      <label><input type="checkbox" name="Documents" value="Birth Certificate/B-Form"> Birth Certificate / B-Form</label>
+      <label><input type="checkbox" name="Documents" value="Father's CNIC Copy"> Father's CNIC Copy</label>
+      <label><input type="checkbox" name="Documents" value="Mother's CNIC Copy"> Mother's CNIC Copy</label>
+      <label><input type="checkbox" name="Documents" value="School Leaving Certificate"> School Leaving Certificate</label>
+      <label><input type="checkbox" name="Documents" value="Previous Result Card"> Previous Result Card</label>
+      <label><input type="checkbox" name="Documents" value="4 Passport Size Photographs"> 4 Passport Size Photographs</label>
+    </div>
+    <div class="field" style="margin-top:14px;">
+      <label>Other (if any)</label>
+      <input type="text" name="Other Documents">
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Transport Facility</h2>
+    <div class="field">
+      <div class="radio-group">
+        <label><input type="radio" name="Transport" value="Yes"> Yes</label>
+        <label><input type="radio" name="Transport" value="No"> No</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>If Yes, Pickup Location</label>
+      <input type="text" name="Pickup Location">
+    </div>
+  </div>
+
+  <div class="fsec">
+    <h2>Parent's Declaration</h2>
+    <div class="declaration-box">
+      I hereby declare that all the information provided in this admission form is true and correct to the best of my knowledge. I agree to abide by all the rules, regulations, and policies of The Iqra Islamic Educational System, Puran.
+    </div>
+    <div class="check-list">
+      <label><input type="checkbox" name="Declaration" value="Agreed"> I agree to the declaration above <span class="req">*</span></label>
+    </div>
+    <div class="field" style="margin-top:14px;">
+      <label>Parent/Guardian Name (as signature) <span class="req">*</span></label>
+      <input type="text" name="Guardian Signature">
+    </div>
+  </div>
+
+  <button type="submit" class="submit-btn">Submit Admission Form</button>
+  <p class="note">Your form will be reviewed by our office and you will be contacted via the mobile number provided.</p>
+</form>
+
+<footer>
+  © 2026 <strong style="color:#fff;">The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
+</footer>
+
+</body>
+</html>
