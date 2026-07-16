@@ -25,7 +25,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Iqra Islamic Educational System (IIES) — Puran, Shangla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#10193F;
@@ -225,6 +225,16 @@
     background:var(--navy); color:#9AA2BC; text-align:center; padding:28px 6vw; font-size:12.5px;
   }
   footer strong{color:var(--paper);}
+
+  /* ---------- language toggle (RTL/Urdu) ---------- */
+  body[dir="rtl"] .i18n{
+    font-family:'Noto Nastaliq Urdu', serif;
+    line-height:2;
+  }
+  body[dir="rtl"] nav .links{flex-direction:row-reverse;}
+  body[dir="rtl"] .hero-cta{flex-direction:row-reverse;}
+  body[dir="rtl"] .contact-cta-row{flex-direction:row-reverse;}
+  body[dir="rtl"] ul{padding-right:18px; padding-left:0;}
 </style>
 </head>
 <body>
@@ -235,26 +245,27 @@
     <div class="b-text">The Iqra Islamic<br>Educational System<span>IIES · PURAN, SHANGLA</span></div>
   </div>
   <div class="links">
-    <a href="#about">About</a>
-    <a href="#academics">Academics</a>
-    <a href="#leadership">Leadership</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
+    <a href="#about"><span class="i18n" data-en="About" data-ur="تعارف">About</span></a>
+    <a href="#academics"><span class="i18n" data-en="Academics" data-ur="تعلیمی نظام">Academics</span></a>
+    <a href="#leadership"><span class="i18n" data-en="Leadership" data-ur="قیادت">Leadership</span></a>
+    <a href="#gallery"><span class="i18n" data-en="Gallery" data-ur="گیلری">Gallery</span></a>
+    <a href="#contact"><span class="i18n" data-en="Contact" data-ur="رابطہ">Contact</span></a>
   </div>
-  <a href="#contact" class="nav-cta">Contacts</a>
-  <button id="notifyBtn" onclick="window.OneSignal && OneSignal.Notifications.requestPermission()" style="margin-left:8px; background:transparent; border:1px solid var(--navy); color:var(--navy); padding:9px 14px; border-radius:3px; font-size:13px; font-weight:600; cursor:pointer;">🔔 Notify Me</button>
+  <a href="#contact" class="nav-cta"><span class="i18n" data-en="Contacts" data-ur="رابطہ کریں">Contacts</span></a>
+  <button id="notifyBtn" onclick="window.OneSignal && OneSignal.Notifications.requestPermission()" style="margin-left:8px; background:transparent; border:1px solid var(--navy); color:var(--navy); padding:9px 14px; border-radius:3px; font-size:13px; font-weight:600; cursor:pointer;"><span class="i18n" data-en="🔔 Notify Me" data-ur="🔔 نوٹیفائی کریں">🔔 Notify Me</span></button>
+  <button id="langToggle" onclick="toggleLanguage()" style="margin-left:8px; background:var(--gold); border:none; color:var(--navy); padding:9px 14px; border-radius:3px; font-size:13px; font-weight:700; cursor:pointer;">اردو</button>
 </nav>
 
 <section class="hero">
   <img src="logo.jpg" class="hero-logo" alt="The Iqra Islamic Educational System">
-  <div class="eyebrow">Puran · Shangla · Khyber Pakhtunkhwa</div>
-  <h1>The Iqra Islamic Educational System</h1>
+  <div class="eyebrow i18n" data-en="Puran · Shangla · Khyber Pakhtunkhwa" data-ur="پوران · شانگلہ · خیبر پختونخوا">Puran · Shangla · Khyber Pakhtunkhwa</div>
+  <h1 class="i18n" data-en="The Iqra Islamic Educational System" data-ur="دی اقرا اسلامک ایجوکیشنل سسٹم">The Iqra Islamic Educational System</h1>
   <div class="short">IIES</div>
-  <p class="tagline">"Come to Know, Go to Glow"</p>
-  <p class="loc">📍 Aloch Puran, District Shangla, Khyber Pakhtunkhwa, Pakistan</p>
+  <p class="tagline i18n" data-en="&quot;Come to Know, Go to Glow&quot;" data-ur="&quot;جاننے آؤ، چمکنے جاؤ&quot;">"Come to Know, Go to Glow"</p>
+  <p class="loc i18n" data-en="📍 Aloch Puran, District Shangla, Khyber Pakhtunkhwa, Pakistan" data-ur="📍 آلوچ پوران، ضلع شانگلہ، خیبر پختونخوا، پاکستان">📍 Aloch Puran, District Shangla, Khyber Pakhtunkhwa, Pakistan</p>
   <div class="hero-cta">
-    <a href="admission.html" class="btn btn-gold">Apply for Admission</a>
-    <a href="#about" class="btn btn-outline">Learn More</a>
+    <a href="admission.html" class="btn btn-gold i18n" data-en="Apply for Admission" data-ur="داخلہ کے لیے درخواست دیں">Apply for Admission</a>
+    <a href="#about" class="btn btn-outline i18n" data-en="Learn More" data-ur="مزید جانیں">Learn More</a>
   </div>
   <svg class="arch-divider" viewBox="0 0 1200 60" preserveAspectRatio="none">
     <path d="M0,60 L0,20 Q150,60 300,20 Q450,-10 600,20 Q750,60 900,20 Q1050,-10 1200,20 L1200,60 Z" fill="#FAF6ED"></path>
@@ -266,37 +277,37 @@
     <div class="iqra-badge">
       <div class="word">اقرأ</div>
       <div class="word" style="font-size:22px; margin-top:6px;">Iqra</div>
-      <div class="mean">"Read" — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ</div>
+      <div class="mean i18n" data-en="&quot;Read&quot; — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ" data-ur="&quot;پڑھو&quot; — اللہ تعالیٰ کی طرف سے نبی کریم ﷺ پر نازل ہونے والا سب سے پہلا لفظ">"Read" — the very first word revealed by Allah Almighty to Prophet Muhammad ﷺ</div>
     </div>
     <div>
-      <div class="kicker">Introduction</div>
-      <h2 style="margin-bottom:16px;">Where Faith Meets Modern Learning</h2>
-      <p>The Iqra Islamic Educational System Puran is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
-      <p>By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand.</p>
-      <p>The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
+      <div class="kicker i18n" data-en="Introduction" data-ur="تعارف">Introduction</div>
+      <h2 style="margin-bottom:16px;" class="i18n" data-en="Where Faith Meets Modern Learning" data-ur="جہاں ایمان جدید تعلیم سے ملتا ہے">Where Faith Meets Modern Learning</h2>
+      <p class="i18n" data-en="The Iqra Islamic Educational System Puran is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings." data-ur="دی اقرا اسلامک ایجوکیشنل سسٹم پوران طلبہ کو جدید تعلیم، اسلامی اقدار، اخلاقی تربیت اور کردار سازی کا متوازن امتزاج فراہم کرنے کے لیے پرعزم ہے۔ ایک ایسی نسل کی پرورش جو تعلیمی میدان میں نمایاں ہو اور اسلامی تعلیمات سے مضبوطی سے جڑی رہے۔">The Iqra Islamic Educational System Puran is committed to providing students with a balanced combination of modern education, Islamic values, moral training, and character development — nurturing a generation that excels academically while remaining firmly connected to Islamic teachings.</p>
+      <p class="i18n" data-en="By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand." data-ur="اقرا نام کا انتخاب کر کے ادارہ اس بات پر زور دیتا ہے کہ تعلیم صرف امتحان پاس کرنے کا نام نہیں بلکہ ذمہ دار، باشعور اور خدا ترس افراد کی تربیت ہے۔ جہاں نظم و ضبط، احترام اور ایمان ساتھ ساتھ چلتے ہیں۔">By choosing the name Iqra, the institution emphasizes that education is not merely about passing examinations but about developing responsible, knowledgeable, and God-conscious individuals — where discipline, respect, and faith go hand in hand.</p>
+      <p class="i18n" data-en="The school&#39;s vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community." data-ur="سکول کا وژن کلاس روم سے آگے تک پھیلا ہوا ہے۔ یہ طلبہ میں مضبوط ابلاغی صلاحیتیں، تنقیدی سوچ، قیادت، اعتماد اور معاشرے، خاندان اور برادری کے تئیں ذمہ داری کا احساس پیدا کرتا ہے۔">The school's vision extends beyond the classroom, helping students build strong communication skills, critical thinking, leadership, confidence, and a sense of responsibility toward society, family, and community.</p>
     </div>
   </div>
 </section>
 
 <section class="section" style="background:#fff;">
   <div class="section-head">
-    <div class="kicker">Guiding Principles</div>
-    <h2>Vision &amp; Mission</h2>
+    <div class="kicker i18n" data-en="Guiding Principles" data-ur="رہنما اصول">Guiding Principles</div>
+    <h2 class="i18n" data-en="Vision &amp; Mission" data-ur="وژن اور مشن">Vision &amp; Mission</h2>
   </div>
   <div class="vm-grid">
     <div class="vm-card">
-      <h3>Our Vision</h3>
-      <p>To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values.</p>
+      <h3 class="i18n" data-en="Our Vision" data-ur="ہمارا وژن">Our Vision</h3>
+      <p class="i18n" data-en="To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values." data-ur="ایک ایسا معروف تعلیمی ادارہ بننا جو علمی لحاظ سے قابل، اخلاقی طور پر بلند، روحانی طور پر باشعور اور معاشرتی طور پر ذمہ دار طلبہ پیدا کرے۔ علم، حکمت، اعتماد اور مضبوط اسلامی اقدار کے حامل مستقبل کے رہنما۔">To become a leading educational institution producing students who are academically competent, morally upright, spiritually conscious, and socially responsible — future leaders with knowledge, wisdom, confidence, and strong Islamic values.</p>
     </div>
     <div class="vm-card">
-      <h3>Our Mission</h3>
+      <h3 class="i18n" data-en="Our Mission" data-ur="ہمارا مشن">Our Mission</h3>
       <ul>
-        <li>High-quality education in modern and Islamic subjects</li>
-        <li>Strong moral character and Islamic ethics</li>
-        <li>Creativity, innovation, and critical thinking</li>
-        <li>Leadership qualities and self-confidence</li>
-        <li>A safe, peaceful, and inspiring learning environment</li>
-        <li>Strong cooperation between teachers, students, and parents</li>
+        <li class="i18n" data-en="High-quality education in modern and Islamic subjects" data-ur="جدید اور اسلامی مضامین میں اعلیٰ معیار کی تعلیم">High-quality education in modern and Islamic subjects</li>
+        <li class="i18n" data-en="Strong moral character and Islamic ethics" data-ur="مضبوط اخلاقی کردار اور اسلامی اقدار">Strong moral character and Islamic ethics</li>
+        <li class="i18n" data-en="Creativity, innovation, and critical thinking" data-ur="تخلیقی صلاحیت، جدت اور تنقیدی سوچ">Creativity, innovation, and critical thinking</li>
+        <li class="i18n" data-en="Leadership qualities and self-confidence" data-ur="قائدانہ صلاحیتیں اور خود اعتمادی">Leadership qualities and self-confidence</li>
+        <li class="i18n" data-en="A safe, peaceful, and inspiring learning environment" data-ur="ایک محفوظ، پرامن اور حوصلہ افزا تعلیمی ماحول">A safe, peaceful, and inspiring learning environment</li>
+        <li class="i18n" data-en="Strong cooperation between teachers, students, and parents" data-ur="اساتذہ، طلبہ اور والدین کے درمیان مضبوط تعاون">Strong cooperation between teachers, students, and parents</li>
       </ul>
     </div>
   </div>
@@ -304,44 +315,44 @@
 
 <section class="section pillars" id="academics">
   <div class="section-head">
-    <div class="kicker">What We Teach</div>
-    <h2>Academic Excellence &amp; Islamic Education</h2>
+    <div class="kicker i18n" data-en="What We Teach" data-ur="ہم کیا پڑھاتے ہیں">What We Teach</div>
+    <h2 class="i18n" data-en="Academic Excellence &amp; Islamic Education" data-ur="علمی مہارت اور اسلامی تعلیم">Academic Excellence &amp; Islamic Education</h2>
   </div>
   <div class="pillar-grid">
     <div class="pillar-card">
       <span class="icon">📘</span>
-      <h3>Modern Subjects</h3>
+      <h3 class="i18n" data-en="Modern Subjects" data-ur="جدید مضامین">Modern Subjects</h3>
       <ul>
-        <li>English</li>
-        <li>Mathematics</li>
-        <li>Science</li>
-        <li>Computer Studies</li>
-        <li>Urdu</li>
-        <li>Social Studies</li>
-        <li>General Knowledge</li>
+        <li class="i18n" data-en="English" data-ur="انگریزی">English</li>
+        <li class="i18n" data-en="Mathematics" data-ur="ریاضی">Mathematics</li>
+        <li class="i18n" data-en="Science" data-ur="سائنس">Science</li>
+        <li class="i18n" data-en="Computer Studies" data-ur="کمپیوٹر سٹڈیز">Computer Studies</li>
+        <li class="i18n" data-en="Urdu" data-ur="اردو">Urdu</li>
+        <li class="i18n" data-en="Social Studies" data-ur="معاشرتی علوم">Social Studies</li>
+        <li class="i18n" data-en="General Knowledge" data-ur="عمومی معلومات">General Knowledge</li>
       </ul>
     </div>
     <div class="pillar-card">
       <span class="icon">☪️</span>
-      <h3>Islamic Studies</h3>
+      <h3 class="i18n" data-en="Islamic Studies" data-ur="اسلامی تعلیمات">Islamic Studies</h3>
       <ul>
-        <li>Holy Qur'an with proper Tajweed</li>
-        <li>Islamiat &amp; Aqeedah</li>
-        <li>Seerah of Prophet Muhammad ﷺ</li>
-        <li>Islamic history</li>
-        <li>Daily Sunnahs &amp; etiquette</li>
-        <li>Duas for everyday life</li>
+        <li class="i18n" data-en="Holy Qur&#39;an with proper Tajweed" data-ur="صحیح تجوید کے ساتھ قرآن پاک">Holy Qur'an with proper Tajweed</li>
+        <li class="i18n" data-en="Islamiat &amp; Aqeedah" data-ur="اسلامیات اور عقیدہ">Islamiat &amp; Aqeedah</li>
+        <li class="i18n" data-en="Seerah of Prophet Muhammad ﷺ" data-ur="سیرت نبی کریم ﷺ">Seerah of Prophet Muhammad ﷺ</li>
+        <li class="i18n" data-en="Islamic history" data-ur="اسلامی تاریخ">Islamic history</li>
+        <li class="i18n" data-en="Daily Sunnahs &amp; etiquette" data-ur="روزمرہ سنتیں اور آداب">Daily Sunnahs &amp; etiquette</li>
+        <li class="i18n" data-en="Duas for everyday life" data-ur="روزمرہ زندگی کی دعائیں">Duas for everyday life</li>
       </ul>
     </div>
     <div class="pillar-card">
       <span class="icon">🌱</span>
-      <h3>Character Building</h3>
+      <h3 class="i18n" data-en="Character Building" data-ur="کردار سازی">Character Building</h3>
       <ul>
-        <li>Honesty &amp; truthfulness</li>
-        <li>Respect &amp; humility</li>
-        <li>Patience &amp; responsibility</li>
-        <li>Discipline &amp; teamwork</li>
-        <li>Kindness &amp; compassion</li>
+        <li class="i18n" data-en="Honesty &amp; truthfulness" data-ur="دیانتداری اور سچائی">Honesty &amp; truthfulness</li>
+        <li class="i18n" data-en="Respect &amp; humility" data-ur="احترام اور عاجزی">Respect &amp; humility</li>
+        <li class="i18n" data-en="Patience &amp; responsibility" data-ur="صبر اور ذمہ داری">Patience &amp; responsibility</li>
+        <li class="i18n" data-en="Discipline &amp; teamwork" data-ur="نظم و ضبط اور ٹیم ورک">Discipline &amp; teamwork</li>
+        <li class="i18n" data-en="Kindness &amp; compassion" data-ur="شفقت اور ہمدردی">Kindness &amp; compassion</li>
       </ul>
     </div>
   </div>
@@ -349,48 +360,48 @@
 
 <section class="section" style="background:#fff;">
   <div class="section-head">
-    <div class="kicker">Core Values</div>
-    <h2>What We Instill in Every Student</h2>
+    <div class="kicker i18n" data-en="Core Values" data-ur="بنیادی اقدار">Core Values</div>
+    <h2 class="i18n" data-en="What We Instill in Every Student" data-ur="ہر طالب علم میں کیا پیدا کرتے ہیں">What We Instill in Every Student</h2>
   </div>
   <div class="values-strip">
-    <span class="val-pill">Honesty</span>
-    <span class="val-pill">Discipline</span>
-    <span class="val-pill">Respect</span>
-    <span class="val-pill">Kindness</span>
-    <span class="val-pill">Responsibility</span>
-    <span class="val-pill">Patience</span>
-    <span class="val-pill">Teamwork</span>
-    <span class="val-pill">Compassion</span>
+    <span class="val-pill i18n" data-en="Honesty" data-ur="دیانتداری">Honesty</span>
+    <span class="val-pill i18n" data-en="Discipline" data-ur="نظم و ضبط">Discipline</span>
+    <span class="val-pill i18n" data-en="Respect" data-ur="احترام">Respect</span>
+    <span class="val-pill i18n" data-en="Kindness" data-ur="شفقت">Kindness</span>
+    <span class="val-pill i18n" data-en="Responsibility" data-ur="ذمہ داری">Responsibility</span>
+    <span class="val-pill i18n" data-en="Patience" data-ur="صبر">Patience</span>
+    <span class="val-pill i18n" data-en="Teamwork" data-ur="ٹیم ورک">Teamwork</span>
+    <span class="val-pill i18n" data-en="Compassion" data-ur="ہمدردی">Compassion</span>
   </div>
 </section>
 
 <section class="section" id="leadership">
   <div class="section-head">
-    <div class="kicker">Our Leadership</div>
-    <h2>Principal &amp; Vice Principal</h2>
+    <div class="kicker i18n" data-en="Our Leadership" data-ur="ہماری قیادت">Our Leadership</div>
+    <h2 class="i18n" data-en="Principal &amp; Vice Principal" data-ur="پرنسپل اور وائس پرنسپل">Principal &amp; Vice Principal</h2>
   </div>
   <div class="lead-grid" style="max-width:520px; margin-bottom:64px;">
     <div class="lead-card">
       <div class="arch-photo"><img src="principal.jpg" alt="Sir Fazal Azim"></div>
       <h3>Sir Fazal Azim</h3>
-      <div class="role">Principal</div>
+      <div class="role i18n" data-en="Principal" data-ur="پرنسپل">Principal</div>
     </div>
     <div class="lead-card">
       <div class="arch-photo"><img src="vice-principal.jpg" alt="Sir Nadeem Ullah"></div>
       <h3>Sir Nadeem Ullah</h3>
-      <div class="role">Vice Principal</div>
+      <div class="role i18n" data-en="Vice Principal" data-ur="وائس پرنسپل">Vice Principal</div>
     </div>
   </div>
 
   <div class="section-head">
-    <div class="kicker">Our Leadership</div>
-    <h2>School Owners</h2>
+    <div class="kicker i18n" data-en="Our Leadership" data-ur="ہماری قیادت">Our Leadership</div>
+    <h2 class="i18n" data-en="School Owners" data-ur="سکول کے مالکان">School Owners</h2>
   </div>
   <div class="lead-grid">
     <div class="lead-card">
       <div class="arch-photo"><img src="owner1.jpg" alt="Sir Subhan Ullah"></div>
       <h3>Sir Subhan Ullah</h3>
-      <div class="role">Owner</div>
+      <div class="role i18n" data-en="Owner" data-ur="مالک">Owner</div>
     </div>
     <div class="lead-card">
       <div class="arch-photo"><img src="owner2.jpg" alt="Sir Imdad Ullah Momin"></div>
@@ -407,9 +418,9 @@
 
 <section class="section" style="background:#fff;" id="gallery">
   <div class="section-head">
-    <div class="kicker">Photos &amp; Videos</div>
-    <h2>Gallery</h2>
-    <p class="lede">Moments from everyday life at IIES — events, achievements, daily routine, sports, and the beautiful valley we call home.</p>
+    <div class="kicker i18n" data-en="Photos &amp; Videos" data-ur="تصاویر اور ویڈیوز">Photos &amp; Videos</div>
+    <h2 class="i18n" data-en="Gallery" data-ur="گیلری">Gallery</h2>
+    <p class="lede i18n" data-en="Moments from everyday life at IIES — events, achievements, daily routine, sports, and the beautiful valley we call home." data-ur="آئی آئی ای ایس کی روزمرہ زندگی کی جھلکیاں — تقریبات، کامیابیاں، معمولات، کھیل، اور وہ خوبصورت وادی جسے ہم اپنا گھر کہتے ہیں۔">Moments from everyday life at IIES — events, achievements, daily routine, sports, and the beautiful valley we call home.</p>
   </div>
   <div class="gallery-grid">
     <div class="gallery-item"><img src="teachers-group.jpg" alt="IIES Teaching Staff"><div class="cap">Our teaching staff</div></div>
@@ -446,40 +457,40 @@
 <section class="section" style="background:#fff;">
   <div class="two-col">
     <div class="block">
-      <h3>Discipline</h3>
-      <p>Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school.</p>
+      <h3 class="i18n" data-en="Discipline" data-ur="نظم و ضبط">Discipline</h3>
+      <p class="i18n" data-en="Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school." data-ur="طلبہ سے توقع کی جاتی ہے کہ وہ وقت پر آئیں، اساتذہ اور ہم جماعتوں کا احترام کریں، صفائی کا خیال رکھیں، مناسب یونیفارم پہنیں، باقاعدگی سے ہوم ورک کریں اور سکول کے قوانین پر عمل کریں۔ یہ عادات انہیں سکول کے اندر اور باہر ذمہ دار افراد بننے کے لیے تیار کرتی ہیں۔">Students are expected to arrive on time, respect teachers and classmates, maintain cleanliness, wear proper uniforms, complete homework regularly, and follow school rules — habits that prepare them to become responsible individuals both inside and outside school.</p>
     </div>
     <div class="block">
-      <h3>Parental Partnership</h3>
-      <p>Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child's achievements alongside the school.</p>
+      <h3 class="i18n" data-en="Parental Partnership" data-ur="والدین کی شراکت">Parental Partnership</h3>
+      <p class="i18n" data-en="Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child&#39;s achievements alongside the school." data-ur="تعلیم اس وقت زیادہ کامیاب ہوتی ہے جب والدین اور اساتذہ مل کر کام کریں۔ باقاعدہ رابطہ والدین کو اپنے بچے کی تعلیمی پیش رفت پر نظر رکھنے، گھر میں تعلیم میں مدد دینے اور سکول کے ساتھ مل کر بچے کی کامیابیوں کا جشن منانے کے قابل بناتا ہے۔">Education becomes more successful when parents and teachers work together. Regular communication enables parents to monitor academic progress, support learning at home, and celebrate their child's achievements alongside the school.</p>
     </div>
   </div>
 </section>
 
 <section class="section contact" id="contact">
   <div class="section-head">
-    <div class="kicker">Get In Touch</div>
-    <h2>Admissions &amp; Inquiries</h2>
+    <div class="kicker i18n" data-en="Get In Touch" data-ur="رابطہ کریں">Get In Touch</div>
+    <h2 class="i18n" data-en="Admissions &amp; Inquiries" data-ur="داخلہ اور معلومات">Admissions &amp; Inquiries</h2>
   </div>
   <div class="contact-card">
-    <div class="row"><strong>School</strong> — The Iqra Islamic Educational System (IIES)</div>
-    <div class="row"><strong>Location</strong> — Aloch Puran, District Shangla, KPK, Pakistan</div>
-    <div class="row"><strong>Owners</strong> — Sir Subhan Ullah &amp; Sir Imdad Ullah Momin</div>
-    <div class="row"><strong>Email</strong> — <a href="mailto:imdadullahmomen@gmail.com" style="color:var(--gold);">imdadullahmomen@gmail.com</a> · <a href="mailto:Khan.dg2020@gmail.com" style="color:var(--gold);">Khan.dg2020@gmail.com</a></div>
+    <div class="row"><strong class="i18n" data-en="School" data-ur="سکول">School</strong> — The Iqra Islamic Educational System (IIES)</div>
+    <div class="row"><strong class="i18n" data-en="Location" data-ur="مقام">Location</strong> — Aloch Puran, District Shangla, KPK, Pakistan</div>
+    <div class="row"><strong class="i18n" data-en="Owners" data-ur="مالکان">Owners</strong> — Sir Subhan Ullah &amp; Sir Imdad Ullah Momin</div>
+    <div class="row"><strong class="i18n" data-en="Email" data-ur="ای میل">Email</strong> — <a href="mailto:imdadullahmomen@gmail.com" style="color:var(--gold);">imdadullahmomen@gmail.com</a> · <a href="mailto:Khan.dg2020@gmail.com" style="color:var(--gold);">Khan.dg2020@gmail.com</a></div>
     <div class="contact-cta-row">
-      <a href="admission.html" class="btn btn-gold">📝 Fill Admission Form</a>
+      <a href="admission.html" class="btn btn-gold"><span class="i18n" data-en="📝 Fill Admission Form" data-ur="📝 داخلہ فارم پُر کریں">📝 Fill Admission Form</span></a>
       <a href="https://wa.me/923459818813" class="btn btn-gold">💬 WhatsApp — Sir Imdad Ullah</a>
       <a href="https://wa.me/923440929329" class="btn btn-gold">💬 WhatsApp — Sir Subhan Ullah</a>
       <a href="https://wa.me/923412565659" class="btn btn-gold">💬 WhatsApp — Sir Nadeem Ullah</a>
-      <a href="mailto:imdadullahmomen@gmail.com" class="btn btn-outline">✉ Email Us</a>
-      <a href="mailto:Khan.dg2020@gmail.com" class="btn btn-outline">✉ Email Khan</a>
+      <a href="mailto:imdadullahmomen@gmail.com" class="btn btn-outline"><span class="i18n" data-en="✉ Email Us" data-ur="✉ ای میل کریں">✉ Email Us</span></a>
+      <a href="mailto:Khan.dg2020@gmail.com" class="btn btn-outline"><span class="i18n" data-en="✉ Email Khan" data-ur="✉ خان کو ای میل کریں">✉ Email Khan</span></a>
     </div>
   </div>
 </section>
 
 <footer>
   © 2026 <strong>The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
-  <div style="margin-top:10px; font-size:11.5px; opacity:.7;">👁️ Total Visits: <span id="visitCount">…</span></div>
+  <div style="margin-top:10px; font-size:11.5px; opacity:.7;"><span class="i18n" data-en="👁️ Total Visits:" data-ur="👁️ کل وزٹس:">👁️ Total Visits:</span> <span id="visitCount">…</span></div>
 </footer>
 
 <script>
@@ -487,6 +498,31 @@
     .then(function(res){ return res.json(); })
     .then(function(data){ document.getElementById('visitCount').innerText = data.value; })
     .catch(function(){ document.getElementById('visitCount').innerText = '—'; });
+
+  // Language toggle (English / Urdu)
+  function setLanguage(lang){
+    document.querySelectorAll('.i18n').forEach(function(el){
+      var text = el.getAttribute('data-' + lang);
+      if (text !== null) el.textContent = text;
+    });
+    if (lang === 'ur') {
+      document.body.setAttribute('dir', 'rtl');
+      document.getElementById('langToggle').textContent = 'English';
+    } else {
+      document.body.setAttribute('dir', 'ltr');
+      document.getElementById('langToggle').textContent = 'اردو';
+    }
+    localStorage.setItem('iies-lang', lang);
+  }
+  function toggleLanguage(){
+    var current = document.body.getAttribute('dir') === 'rtl' ? 'ur' : 'en';
+    setLanguage(current === 'ur' ? 'en' : 'ur');
+  }
+  // Restore saved preference on load
+  (function(){
+    var saved = localStorage.getItem('iies-lang');
+    if (saved === 'ur') setLanguage('ur');
+  })();
 </script>
 
 </body>
