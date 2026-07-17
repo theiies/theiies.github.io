@@ -318,6 +318,12 @@
     font-size:12px; padding:4px 10px;
   }
   .rec-empty{text-align:center; color:var(--mist); font-size:13px; padding:20px;}
+  .rec-contact{display:flex; align-items:center; gap:10px;}
+  .rec-icon{
+    font-size:15px; text-decoration:none; padding:3px 6px; border-radius:4px; border:1px solid var(--line);
+    display:inline-flex; align-items:center;
+  }
+  .rec-icon:hover{background:var(--paper);}
 
   /* ---------- map ---------- */
   .map-wrap{
@@ -1000,7 +1006,14 @@
       return;
     }
     body.innerHTML = records.map(function(r, i){
-      return '<tr><td>' + escapeHtml(r.name) + '</td><td>' + escapeHtml(r.cls) + '</td><td>' + escapeHtml(r.parent) + '</td>' +
+      var digits = r.parent.replace(/\D/g, ''); // strip non-numbers
+      if (digits.length === 11 && digits.startsWith('0')) digits = '92' + digits.substring(1); // 03XX... -> 923XX...
+      return '<tr><td>' + escapeHtml(r.name) + '</td><td>' + escapeHtml(r.cls) + '</td>' +
+        '<td><div class="rec-contact">' +
+          '<span>' + escapeHtml(r.parent) + '</span>' +
+          '<a href="tel:' + escapeHtml(r.parent) + '" class="rec-icon" title="Call">📞</a>' +
+          '<a href="https://wa.me/' + digits + '" target="_blank" rel="noopener" class="rec-icon" title="WhatsApp">💬</a>' +
+        '</div></td>' +
         '<td><button class="rec-del" onclick="deleteRecord(' + i + ')">✕</button></td></tr>';
     }).join('');
   }
