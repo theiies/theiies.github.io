@@ -143,16 +143,22 @@
       <tbody id="resultsTable"></tbody>
     </table>
   </div>  <!-- MESSAGES -->
-  <div class="panel" id="messages">
-    <h3>General Message</h3>
-    <p style="font-size:13px; color:var(--mist); margin-top:-10px;">
-      Message likho aur jis bachay ko bhejna hai uska naam <strong>@</strong> laga kar mention karo (jaise <em>@Ali Khan</em>). Type karte hi neeche suggestion list dikhegi.
-    </p>
-    <textarea id="msgText" rows="5" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:4px; font-size:14px; font-family:inherit;" placeholder="Message likhein... e.g. @Ali Khan kal school nahi aayega."></textarea>
-    <div id="mentionSuggestions" style="display:none; background:#fff; border:1px solid var(--line); border-radius:4px; margin-top:4px; max-height:160px; overflow-y:auto;"></div>
-    <button id="prepareSendBtn" style="margin-top:12px; background:var(--gold); border:none; color:var(--navy); font-weight:700; padding:10px 18px; border-radius:4px; cursor:pointer;">Prepare WhatsApp Messages</button>
-
-    <div id="sendList" style="margin-top:22px;"></div>
+  <div class="panel" id="messages" style="padding:0; overflow:hidden;">
+    <div style="background:var(--navy); color:#fff; padding:14px 18px; font-size:14px; font-weight:600;">
+      General Message
+    </div>
+    <div id="chatArea" style="background:#f0f0f0; min-height:340px; max-height:440px; overflow-y:auto; padding:16px;">
+      <p id="chatEmpty" style="color:var(--mist); font-size:13px; text-align:center; margin-top:100px;">
+        Message likhein niche, @naam laga kar bachay mention karo.
+      </p>
+    </div>
+    <div style="position:relative; padding:10px 14px; background:#fff; border-top:1px solid var(--line);">
+      <div id="mentionSuggestions" style="display:none; position:absolute; bottom:64px; left:14px; right:14px; background:#fff; border:1px solid var(--line); border-radius:8px; max-height:160px; overflow-y:auto; box-shadow:0 -2px 10px rgba(0,0,0,0.08);"></div>
+      <div style="display:flex; align-items:center; gap:8px; background:#f0f0f0; border-radius:22px; padding:6px 8px 6px 16px;">
+        <input id="msgText" type="text" placeholder="Message likhein... @naam" style="flex:1; border:none; background:transparent; outline:none; font-size:14px; padding:8px 0;">
+        <button id="prepareSendBtn" style="background:#25D366; border:none; width:38px; height:38px; border-radius:50%; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">➤</button>
+      </div>
+    </div>
   </div>
 
 </main>
@@ -348,6 +354,13 @@
     });
   });
 
+  msgText.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && suggestionBox.style.display !== 'block') {
+      e.preventDefault();
+      document.getElementById('prepareSendBtn').click();
+    }
+  });
+
   function normalizePhone(num) {
     if (!num) return null;
     let n = num.replace(/[^0-9+]/g, '');
@@ -358,25 +371,48 @@
   }
 
   document.getElementById('prepareSendBtn').onclick = () => {
-    const text = msgText.value;
+    const text = msgText.value.trim();
+    if (!text) return;
     const mentioned = studentsCache.filter(s => text.includes('@' + s.full_name));
-    const listEl = document.getElementById('sendList');
+    const chatArea = document.getElementById('chatArea');
+    const emptyMsg = document.getElementById('chatEmpty');
+    if (emptyMsg) emptyMsg.remove();
+
     if (mentioned.length === 0) {
-      listEl.innerHTML = '<p style="color:var(--mist); font-size:13.5px;">Message mein koi student mention nahi hua. @naam likh kar mention karo.</p>';
+      chatArea.innerHTML += `<p style="color:#b02a2a; font-size:13px; text-align:center;">Koi student mention nahi hua — @naam likh kar mention karo.</p>`;
+      chatArea.scrollTop = chatArea.scrollHeight;
       return;
     }
-    listEl.innerHTML = '<h4 style="color:var(--navy); margin-bottom:10px;">Send to:</h4>' + mentioned.map(s => {
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    mentioned.forEach(s => {
       const phone = normalizePhone(s.contact_number);
       const cleanMsg = text.replace(new RegExp('@' + s.full_name, 'g'), s.full_name);
+      const bubbleId = 'bubble_' + s.id + '_' + now.getTime();
+
+      let statusHtml;
       if (!phone) {
-        return `<div style="padding:10px 0; border-bottom:1px solid var(--line); font-size:13.5px;">${s.full_name} — <span style="color:#b02a2a;">koi contact number nahi hai</span></div>`;
+        statusHtml = `<span style="color:#b02a2a;">Koi contact number nahi hai</span>`;
+      } else {
+        const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(cleanMsg)}`;
+        statusHtml = `<a id="${bubbleId}" href="${waLink}" target="_blank" onclick="document.getElementById('${bubbleId}').textContent='Sent ✓'; document.getElementById('${bubbleId}').style.color='#1b1b1b'; document.getElementById('${bubbleId}').style.fontWeight='700';" style="color:#25D366; font-weight:600; text-decoration:none;">Tap to send ➤</a>`;
       }
-      const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(cleanMsg)}`;
-      return `<div style="padding:10px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:13.5px;">${s.full_name} <span style="color:var(--mist); font-size:11.5px;">(${s.contact_number})</span></span>
-        <a href="${waLink}" target="_blank" onclick="this.style.background='#1b1b1b'; this.style.color='#fff'; this.textContent='Sent ✓';" style="background:#25D366; color:#fff; padding:8px 14px; border-radius:4px; text-decoration:none; font-size:13px; font-weight:700;">Send WhatsApp</a>
-      </div>`;
-    }).join('');
+
+      chatArea.innerHTML += `
+        <div style="max-width:78%; margin-left:auto; margin-bottom:14px;">
+          <div style="background:#dcf8c6; border-radius:14px 14px 2px 14px; padding:10px 14px; font-size:14px; color:#1b1b1b;">
+            <div style="font-size:11.5px; color:var(--navy); font-weight:700; margin-bottom:2px;">To: ${s.full_name}</div>
+            ${cleanMsg}
+          </div>
+          <div style="text-align:right; font-size:11px; color:var(--mist); margin-top:3px;">${timeStr} • WhatsApp • ${statusHtml}</div>
+        </div>`;
+    });
+
+    chatArea.scrollTop = chatArea.scrollHeight;
+    msgText.value = '';
+  };
   };
 
   checkSession();
