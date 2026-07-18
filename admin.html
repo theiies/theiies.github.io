@@ -87,6 +87,7 @@
     <button class="tab-btn active" data-tab="students">Students</button>
     <button class="tab-btn" data-tab="fees">Fees</button>
     <button class="tab-btn" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="messages">Messages</button>
   </div>
 
   <!-- STUDENTS -->
@@ -139,7 +140,19 @@
       <thead><tr><th>Student</th><th>Subject</th><th>Marks</th><th>Term</th><th></th></tr></thead>
       <tbody id="resultsTable"></tbody>
     </table>
+  </div>  <!-- MESSAGES -->
+  <div class="panel" id="messages">
+    <h3>General Message</h3>
+    <p style="font-size:13px; color:var(--mist); margin-top:-10px;">
+      Message likho aur jis bachay ko bhejna hai uska naam <strong>@</strong> laga kar mention karo (jaise <em>@Ali Khan</em>). Type karte hi neeche suggestion list dikhegi.
+    </p>
+    <textarea id="msgText" rows="5" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:4px; font-size:14px; font-family:inherit;" placeholder="Message likhein... e.g. @Ali Khan kal school nahi aayega."></textarea>
+    <div id="mentionSuggestions" style="display:none; background:#fff; border:1px solid var(--line); border-radius:4px; margin-top:4px; max-height:160px; overflow-y:auto;"></div>
+    <button id="prepareSendBtn" style="margin-top:12px; background:var(--gold); border:none; color:var(--navy); font-weight:700; padding:10px 18px; border-radius:4px; cursor:pointer;">Prepare WhatsApp Messages</button>
+
+    <div id="sendList" style="margin-top:22px;"></div>
   </div>
+
 </main>
 
 <script>
@@ -302,6 +315,66 @@
     const { error } = await sb.from(table).delete().eq('id', id);
     if (error) return alert(error.message);
     await loadAll();
+  };
+
+  // ---------- MESSAGES (WhatsApp via mentions) ----------
+  const msgText = document.getElementById('msgText');
+  const suggestionBox = document.getElementById('mentionSuggestions');
+
+  msgText.addEventListener('input', () => {
+    const text = msgText.value;
+    const cursor = msgText.selectionStart;
+    const beforeCursor = text.slice(0, cursor);
+    const match = beforeCursor.match(/@([^@\n]*)$/);
+    if (!match) { suggestionBox.style.display = 'none'; return; }
+    const query = match[1].toLowerCase();
+    const matches = studentsCache.filter(s => s.full_name.toLowerCase().includes(query));
+    if (matches.length === 0) { suggestionBox.style.display = 'none'; return; }
+    suggestionBox.innerHTML = matches.slice(0, 8).map(s =>
+      `<div class="mention-option" data-name="${s.full_name}" style="padding:8px 12px; cursor:pointer; border-bottom:1px solid var(--line); font-size:13.5px;">${s.full_name} <span style="color:var(--mist); font-size:11.5px;">(${s.class || ''})</span></div>`
+    ).join('');
+    suggestionBox.style.display = 'block';
+
+    suggestionBox.querySelectorAll('.mention-option').forEach(opt => {
+      opt.onclick = () => {
+        const name = opt.dataset.name;
+        const newText = text.slice(0, cursor - match[0].length) + '@' + name + ' ' + text.slice(cursor);
+        msgText.value = newText;
+        suggestionBox.style.display = 'none';
+        msgText.focus();
+      };
+    });
+  });
+
+  function normalizePhone(num) {
+    if (!num) return null;
+    let n = num.replace(/[^0-9+]/g, '');
+    if (n.startsWith('+')) n = n.slice(1);
+    if (n.startsWith('0')) n = '92' + n.slice(1);
+    if (!n.startsWith('92')) n = '92' + n;
+    return n;
+  }
+
+  document.getElementById('prepareSendBtn').onclick = () => {
+    const text = msgText.value;
+    const mentioned = studentsCache.filter(s => text.includes('@' + s.full_name));
+    const listEl = document.getElementById('sendList');
+    if (mentioned.length === 0) {
+      listEl.innerHTML = '<p style="color:var(--mist); font-size:13.5px;">Message mein koi student mention nahi hua. @naam likh kar mention karo.</p>';
+      return;
+    }
+    listEl.innerHTML = '<h4 style="color:var(--navy); margin-bottom:10px;">Send to:</h4>' + mentioned.map(s => {
+      const phone = normalizePhone(s.contact_number);
+      const cleanMsg = text.replace(new RegExp('@' + s.full_name, 'g'), s.full_name);
+      if (!phone) {
+        return `<div style="padding:10px 0; border-bottom:1px solid var(--line); font-size:13.5px;">${s.full_name} — <span style="color:#b02a2a;">koi contact number nahi hai</span></div>`;
+      }
+      const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(cleanMsg)}`;
+      return `<div style="padding:10px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:13.5px;">${s.full_name} <span style="color:var(--mist); font-size:11.5px;">(${s.contact_number})</span></span>
+        <a href="${waLink}" target="_blank" style="background:#25D366; color:#fff; padding:8px 14px; border-radius:4px; text-decoration:none; font-size:13px; font-weight:700;">Send WhatsApp</a>
+      </div>`;
+    }).join('');
   };
 
   checkSession();
