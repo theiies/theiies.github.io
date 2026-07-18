@@ -74,8 +74,10 @@
 
 <div id="login-screen">
   <h2>Staff Login</h2>
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+  <input type="email" id="email" placeholder="Email" autocomplete="off">
+  <input type="password" id="password" placeholder="Password" autocomplete="new-password">
+  <input type="text" style="display:none;" autocomplete="username">
+  <input type="password" style="display:none;" autocomplete="new-password">
   <button id="loginBtn">Login</button>
   <div id="error-msg"></div>
 </div>
