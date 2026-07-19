@@ -760,7 +760,7 @@
     <h2 class="i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h2>
   </div>
   <div class="books-grid" id="booksGrid">
-    <!-- Cards load automatically from books/books.json — add a new book by adding one entry to that file, no HTML edits needed -->
+    <!-- Cards are generated automatically from every PDF found in the "books" folder of the GitHub repo. Just upload a PDF there — no editing needed anywhere. -->
   </div>
   <p style="text-align:center; font-size:12.5px; color:var(--mist); margin-top:22px;">
     <span class="i18n" data-en="More books will be added soon." data-ur="جلد مزید کتابیں شامل کی جائیں گی۔">More books will be added soon.</span>
@@ -768,17 +768,27 @@
 </section>
 
 <script>
-  fetch('books/books.json')
+  // Automatically lists every PDF inside the "books" folder of the GitHub repo.
+  // To add a new book: just upload the PDF file into the "books" folder on GitHub — that's it.
+  fetch('https://api.github.com/repos/zavi321/The-IIES/contents/books')
     .then(function(res){ return res.json(); })
-    .then(function(books){
+    .then(function(files){
       var grid = document.getElementById('booksGrid');
       if (!grid) return;
-      grid.innerHTML = books.map(function(b){
+      var pdfs = (files || []).filter(function(f){
+        return f.name && f.name.toLowerCase().endsWith('.pdf');
+      });
+      if (pdfs.length === 0) {
+        grid.innerHTML = '';
+        return;
+      }
+      grid.innerHTML = pdfs.map(function(f){
+        var title = f.name.replace(/\.pdf$/i, '').replace(/[-_]+/g, ' ').trim();
+        title = title.replace(/\w\S*/g, function(w){ return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
         return '<div class="book-card">' +
-          '<div class="book-icon">' + b.icon + '</div>' +
-          '<div class="book-title">' + b.title + '</div>' +
-          '<div class="book-class">' + b.class + '</div>' +
-          '<a href="' + b.file + '" download class="btn btn-gold" style="margin-top:12px; padding:8px 18px; font-size:13px;">' +
+          '<div class="book-icon">📘</div>' +
+          '<div class="book-title">' + title + '</div>' +
+          '<a href="' + f.download_url + '" download class="btn btn-gold" style="margin-top:12px; padding:8px 18px; font-size:13px;">' +
             '<span class="i18n" data-en="⬇ Download" data-ur="⬇ ڈاؤن لوڈ کریں">⬇ Download</span>' +
           '</a>' +
         '</div>';
