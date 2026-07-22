@@ -446,6 +446,41 @@
   .map-wrap iframe{width:100%; height:340px; border:0; display:block;}
 
   /* ---------- books / digital library ---------- */
+  .library-promo-card{
+    display:flex; align-items:center; gap:22px;
+    max-width:720px; margin:0 auto;
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:26px 28px; text-decoration:none;
+    box-shadow:0 2px 10px rgba(16,25,63,0.06);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .library-promo-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 26px rgba(16,25,63,0.12);
+    border-color:var(--gold);
+  }
+  .library-promo-icon{
+    flex-shrink:0;
+    width:72px; height:72px; border-radius:14px;
+    background:linear-gradient(135deg, var(--paper), #fff);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .library-promo-text{ flex:1; min-width:0; }
+  .library-promo-title{
+    font-weight:700; color:var(--navy); font-size:17px; margin-bottom:4px;
+  }
+  .library-promo-sub{
+    font-size:13px; color:var(--mist); line-height:1.5;
+  }
+  .library-promo-arrow{
+    flex-shrink:0; width:36px; height:36px; border-radius:50%;
+    background:var(--paper); display:flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:560px){
+    .library-promo-card{ flex-wrap:wrap; padding:22px; }
+    .library-promo-arrow{ display:none; }
+  }
   .books-grid{
     display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px;
     max-width:1100px; margin:0 auto;
@@ -980,6 +1015,34 @@
   <div class="fb-feed-wrap">
     <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100047533705911&amp;tabs=timeline&amp;width=560&amp;height=600&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true" height="600" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="IIES Facebook Page Feed"></iframe>
   </div>
+</section>
+
+<section class="section" id="library">
+  <div class="section-head">
+    <div class="kicker i18n" data-en="Digital Library" data-ur="ڈیجیٹل لائبریری">Digital Library</div>
+    <h2 class="i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h2>
+  </div>
+
+  <a href="books.html" class="library-promo-card">
+    <div class="library-promo-icon">
+      <svg viewBox="0 0 64 64" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" fill="var(--gold)" opacity="0.18"/>
+        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" fill="var(--navy)" opacity="0.12"/>
+        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M28 12v38M14 20h8M14 28h8M42 20h8M42 28h8" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="library-promo-text">
+      <div class="library-promo-title i18n" data-en="Open the Digital Library" data-ur="ڈیجیٹل لائبریری کھولیں">Open the Digital Library</div>
+      <div class="library-promo-sub i18n" data-en="Browse and download textbooks, Islamiyat material, and study guides — organized by class." data-ur="نصابی کتابیں، اسلامیات کا مواد اور تعلیمی رہنما — جماعت کے لحاظ سے ترتیب دی گئی۔">Browse and download textbooks, Islamiyat material, and study guides — organized by class.</div>
+    </div>
+    <div class="library-promo-arrow">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 6l6 6-6 6" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </a>
 </section>
 
 <section class="section" style="background:#fff;" id="gallery">

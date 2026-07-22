@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Books & Study Material — The Iqra Islamic Educational System (IIES)</title>
-<meta name="description" content="Downloadable books and study material for students of The Iqra Islamic Educational System (IIES), Puran, Shangla.">
+<title>Digital Library — The Iqra Islamic Educational System (IIES)</title>
+<meta name="description" content="Browse and download textbooks, Islamiyat material, and study guides from The Iqra Islamic Educational System's digital library.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -17,489 +17,227 @@
     --mist:#5B6478;
     --line: rgba(16,25,63,0.12);
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  *{box-sizing:border-box;}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Work Sans', sans-serif;
-    font-weight:500;
-    -webkit-font-smoothing:antialiased;
+    margin:0; font-family:'Work Sans',sans-serif; background:var(--paper); color:var(--ink);
   }
-  a{color:inherit; text-decoration:none;}
-  .display{font-family:'Amiri', serif;}
-  .wrap{max-width:1100px; margin:0 auto; padding:0 6vw;}
+  body[dir="rtl"]{font-family:'Noto Nastaliq Urdu','Work Sans',sans-serif;}
 
-  /* ---------- nav ---------- */
-  nav{
-    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
-    padding:16px 6vw;
-    position:sticky; top:0; z-index:60;
-    background:rgba(250,246,237,0.94);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
+  header{
+    background:var(--navy); color:var(--paper); padding:30px 20px 26px; text-align:center;
+    position:relative; overflow:hidden;
   }
-  .nav-actions{
-    display:flex; align-items:center; gap:8px;
-    flex-basis:100%; justify-content:center;
-    margin-top:12px;
-  }
-  .brand{display:flex; align-items:center; gap:12px;}
-  .brand img{width:42px; height:42px; border-radius:50%;}
-  .brand .b-text{font-family:'Amiri', serif; font-weight:700; font-size:16px; line-height:1.2; color:var(--navy);}
-  .brand .b-text span{display:block; font-family:'Work Sans',sans-serif; font-size:10px; letter-spacing:.12em; color:var(--gold); font-weight:600;}
-  nav .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--navy);}
-  @media(max-width:800px){ nav .links{display:none;} }
-  .nav-cta{
-    background:var(--navy); color:var(--paper);
-    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
-  }
-  .nav-lang-btn{
-    background:var(--gold); color:var(--navy); border:none; cursor:pointer;
-    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
-  }
-
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative;
-    background:radial-gradient(circle at 80% 10%, rgba(201,162,39,0.15), transparent 45%), var(--navy);
-    color:var(--paper);
-    padding:80px 6vw 0;
-    text-align:center;
-    overflow:hidden;
-  }
-  .hero-logo{width:120px; height:120px; border-radius:50%; margin-bottom:26px; box-shadow:0 0 0 4px rgba(201,162,39,0.35);}
-  .eyebrow{
-    font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
-    margin-bottom:16px; font-weight:600;
-  }
-  .hero h1{
-    font-family:'Amiri', serif;
-    font-size:clamp(30px,5.2vw,50px);
-    font-weight:700;
-    line-height:1.2;
-    max-width:820px; margin:0 auto 10px;
-  }
-  .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
-  .hero .tagline{
-    font-family:'Amiri', serif; font-style:italic;
-    font-size:19px; color:#D9DCEA; margin-bottom:8px;
-  }
-  .hero .loc{font-size:13.5px; color:#B9C0D6; margin-bottom:34px;}
-  .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:60px;}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:13px 28px; border-radius:3px; font-weight:600; font-size:14.5px;
-    transition:transform .15s ease;
-  }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-gold{background:var(--gold); color:var(--navy);}
-  .btn-outline{border:1px solid rgba(250,246,237,0.4); color:var(--paper);}
-  .btn-outline-light{border:1px solid var(--line); color:var(--navy); background:transparent;}
-
-  .arch-divider{display:block; width:100%; height:auto;}
-
-  /* ---------- section shared ---------- */
-  .section{position:relative; overflow:hidden; padding:74px 6vw;}
-  .section::before{
-    content:""; position:absolute; inset:0;
-    background:url('logo.jpg') center/cover no-repeat;
-    filter:blur(6px);
-    opacity:0.2;
-    z-index:0;
+  header::before{
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(201,162,39,0.10) 0, transparent 45%),
+      radial-gradient(circle at 88% 80%, rgba(201,162,39,0.08) 0, transparent 45%);
     pointer-events:none;
   }
-  .section > *{position:relative; z-index:1;}
-  .section.pillars::before, .section.contact::before{content:none;}
-  .section-head{text-align:center; max-width:700px; margin:0 auto 46px;}
-  .kicker{
-    font-size:12px; color:var(--gold); letter-spacing:.18em; text-transform:uppercase;
-    font-weight:700; margin-bottom:10px;
+  header .header-inner{ position:relative; }
+  header h1{font-family:'Amiri', serif; font-size:clamp(22px,4vw,30px); margin:10px 0 6px;}
+  header p{margin:0; color:var(--gold); font-size:13px; letter-spacing:.1em; text-transform:uppercase;}
+  .back-link{
+    position:absolute; left:20px; top:28px; color:var(--paper); text-decoration:none;
+    font-size:13.5px; border:1px solid rgba(250,246,237,0.35); padding:7px 16px; border-radius:20px;
+    display:inline-flex; align-items:center; gap:6px;
   }
-  .section h2{
-    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700; color:var(--navy);
-    margin-bottom:14px;
+  body[dir="rtl"] .back-link{left:auto; right:20px;}
+  .lang-toggle{
+    position:absolute; right:20px; top:28px; background:var(--gold); color:var(--navy);
+    border:none; padding:7px 16px; border-radius:20px; font-weight:700; font-size:12.5px; cursor:pointer;
   }
-  .section p.lede{color:var(--mist); font-size:15.5px; line-height:1.75;}
+  body[dir="rtl"] .lang-toggle{right:auto; left:20px;}
 
-  /* ---------- intro ---------- */
-  .intro-grid{
-    display:grid; grid-template-columns:.85fr 1.15fr; gap:50px; align-items:start;
-    max-width:1000px; margin:0 auto;
-  }
-  @media(max-width:760px){ .intro-grid{grid-template-columns:1fr;} }
-  .iqra-badge{
-    background:var(--navy); color:var(--paper); border-radius:8px; padding:28px 24px;
-    text-align:center;
-  }
-  .iqra-badge .word{font-family:'Amiri', serif; font-size:38px; color:var(--gold); font-weight:700;}
-  .iqra-badge .mean{font-size:13px; color:#C7CCDE; margin-top:6px;}
-  .intro-grid p{font-size:15px; line-height:1.85; color:var(--ink); margin-bottom:16px;}
+  main{max-width:1100px; margin:0 auto; padding:34px 20px 60px;}
 
-  /* ---------- vision/mission ---------- */
-  .vm-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:30px;
-    max-width:1000px; margin:0 auto;
+  .toolbar{
+    display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    margin-bottom:28px; position:sticky; top:0; background:var(--paper); padding:12px 0; z-index:5;
   }
-  @media(max-width:720px){ .vm-grid{grid-template-columns:1fr;} }
-  .vm-card{
-    background:#fff; border:1px solid var(--line); border-radius:8px; padding:32px 28px;
+  #search{
+    flex:1; min-width:200px; padding:12px 16px; border:1px solid var(--line); border-radius:10px;
+    font-size:14px; font-family:inherit; background:#fff;
   }
-  .vm-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:22px; margin-bottom:14px;}
-  .vm-card p{font-size:14.5px; color:var(--mist); line-height:1.75; margin-bottom:14px;}
-  .vm-card ul{padding-left:18px; font-size:14px; color:var(--ink); line-height:2;}
-
-  /* ---------- pillars (academic / islamic / character) ---------- */
-  .pillars{background:var(--navy); color:var(--paper);}
-  .pillars .kicker{color:var(--gold);}
-  .pillars .section-head h2{color:#fff;}
-  .pillar-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-    gap:1px; background:rgba(250,246,237,0.14);
-    border:1px solid rgba(250,246,237,0.14);
-    max-width:1100px; margin:0 auto;
-  }
-  .pillar-card{background:var(--navy); padding:34px 28px;}
-  .pillar-card .icon{font-size:26px; margin-bottom:16px; display:block;}
-  .pillar-card h3{font-family:'Amiri', serif; font-size:20px; margin-bottom:14px; color:var(--gold);}
-  .pillar-card ul{list-style:none; font-size:13.5px; color:#C7CCDE; line-height:2.1;}
-  .pillar-card ul li::before{content:"— "; color:var(--gold);}
-
-  /* ---------- character values ---------- */
-  .values-strip{
-    display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
-    max-width:900px; margin:0 auto;
-  }
-  .val-pill{
-    font-size:13px; border:1px solid var(--line); border-radius:20px;
-    padding:9px 20px; color:var(--navy); background:#fff; font-weight:500;
+  #search:focus{ outline:none; border-color:var(--gold); }
+  #classFilter{
+    padding:12px 16px; border:1px solid var(--line); border-radius:10px; font-size:14px;
+    font-family:inherit; background:#fff; min-width:150px;
   }
 
-  /* ---------- leadership ---------- */
-  .lead-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-    gap:36px; max-width:960px; margin:0 auto;
-  }
-  .lead-card{text-align:center;}
-  .arch-photo{
-    width:210px; height:210px; margin:0 auto 18px;
-    border-radius:12px;
-    overflow:hidden;
-    border:3px solid var(--gold);
-    background:#f4f1ea;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .arch-photo img{width:100%; height:100%; object-fit:contain;}
-  .lead-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:19px; margin-bottom:4px;}
-  .lead-card .role{font-size:12.5px; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; font-weight:600;}
-
-  /* ---------- discipline / partnership strip ---------- */
-  .two-col{
-    display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin:0 auto;
-  }
-  @media(max-width:720px){ .two-col{grid-template-columns:1fr;} }
-  .two-col .block h3{font-family:'Amiri', serif; color:var(--navy); font-size:20px; margin-bottom:12px;}
-  .two-col .block p{font-size:14.5px; color:var(--mist); line-height:1.8;}
-
-  /* ---------- gallery ---------- */
-  .gallery-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
-    gap:20px; max-width:1100px; margin:0 auto;
-  }
-  .gallery-item{
-    border-radius:6px; overflow:hidden; border:1px solid var(--line); background:#fff;
-  }
-  .gallery-item img{width:100%; height:220px; object-fit:cover; display:block;}
-  .gallery-item .cap{
-    padding:10px 14px; font-size:12px; color:var(--mist); text-align:center;
+  .book-count{
+    font-size:12.5px; color:var(--mist); margin-bottom:18px; letter-spacing:.02em;
   }
 
-  /* ---------- academic calendar ---------- */
-  .cal-table{
-    width:100%; max-width:800px; margin:0 auto; border-collapse:collapse;
-    background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(16,25,63,0.06);
-  }
-  .cal-table th{
-    background:var(--navy); color:var(--paper); text-align:left; padding:12px 16px; font-size:13px;
-    font-family:'Amiri', serif; font-weight:700;
-  }
-  .cal-table td{
-    padding:12px 16px; font-size:14px; border-bottom:1px solid var(--line); color:var(--ink);
-  }
-  .cal-table tr:last-child td{border-bottom:none;}
-  .cal-table td:first-child{font-weight:600; color:var(--navy); width:45%;}
-  body[dir="rtl"] .cal-table th, body[dir="rtl"] .cal-table td{text-align:right;}
-  .cal-note{font-size:12.5px; color:var(--mist); text-align:center; margin-top:14px; max-width:700px; margin-left:auto; margin-right:auto;}
-
-  .calendar-cards{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:22px;
-    max-width:1100px; margin:0 auto;
-  }
-  .calendar-card{
-    background:#fff; border:1px solid var(--line); border-radius:8px;
-    padding:24px 22px; text-align:center; box-shadow:0 1px 3px rgba(16,25,63,0.06);
-    transition:transform .15s ease;
-  }
-  .calendar-card:hover{transform:translateY(-3px);}
-  .calendar-card h3{
-    font-family:'Amiri', serif; color:var(--navy); font-size:17px; font-weight:700; margin-bottom:10px;
-  }
-  .calendar-card p{font-size:13.5px; color:var(--mist); line-height:1.7; margin:0;}
-  .calendar-card p strong{display:block; color:var(--gold); font-size:13px; letter-spacing:.03em; margin-bottom:4px;}
-
-  /* ---------- news & events ---------- */
-  .news-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:24px;
-    max-width:1100px; margin:0 auto;
-  }
-  .news-card{
-    background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;
-    box-shadow:0 1px 3px rgba(16,25,63,0.06);
-  }
-  .news-tag{
-    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-    color:var(--navy); background:rgba(201,162,39,0.16); padding:4px 12px; border-radius:20px; margin:20px 22px 0;
-  }
-  .news-card h3{
-    font-family:'Amiri', serif; color:var(--navy); font-size:18px; margin:14px 22px 8px; line-height:1.4;
-  }
-  .news-card .news-date{font-size:12px; color:var(--gold); font-weight:600; margin:0 22px 10px;}
-  .news-card p.news-body{font-size:13.5px; color:var(--mist); line-height:1.7; margin:0 22px 22px;}
-
-  .fb-feed-wrap{
-    max-width:560px; margin:44px auto 0; border-radius:8px; overflow:hidden;
-    border:1px solid var(--line); box-shadow:0 1px 3px rgba(16,25,63,0.06);
-  }
-  .fb-feed-wrap iframe{width:100%; border:0; display:block;}
-
-  /* ---------- student records (staff only) ---------- */
-  .records-box{
-    max-width:600px; margin:0 auto; background:#fff; border:1px solid var(--line);
-    border-radius:8px; padding:32px 26px; box-shadow:0 1px 3px rgba(16,25,63,0.06);
-  }
-  .records-gate{text-align:center;}
-  .records-gate input{
-    width:100%; max-width:280px; padding:11px 14px; border:1px solid var(--line); border-radius:4px;
-    font-size:14px; margin:14px 0; font-family:'Work Sans', sans-serif;
-  }
-  .records-gate .warn{font-size:12px; color:var(--mist); margin-top:6px;}
-  .records-form{
-    display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:10px; margin-bottom:24px; align-items:end;
-  }
-  @media(max-width:640px){ .records-form{grid-template-columns:1fr;} }
-  .records-form label{display:block; font-size:11.5px; color:var(--mist); margin-bottom:4px; font-weight:600;}
-  .records-form input{
-    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:4px; font-size:13.5px;
-    font-family:'Work Sans', sans-serif;
-  }
-  .records-table-wrap{max-width:900px; margin:0 auto; overflow-x:auto;}
-  #recordsTable{width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden;}
-  #recordsTable th{
-    background:var(--navy); color:var(--paper); text-align:left; padding:10px 14px; font-size:12.5px;
-    font-family:'Amiri', serif; font-weight:700;
-  }
-  #recordsTable td{padding:10px 14px; font-size:13.5px; border-bottom:1px solid var(--line); color:var(--ink);}
-  #recordsTable tr:last-child td{border-bottom:none;}
-  .rec-del{
-    background:none; border:1px solid var(--line); border-radius:4px; color:#B0413E; cursor:pointer;
-    font-size:12px; padding:4px 10px;
-  }
-  .rec-empty{text-align:center; color:var(--mist); font-size:13px; padding:20px;}
-  .rec-contact{display:flex; align-items:center; gap:10px;}
-  .rec-icon{
-    font-size:15px; text-decoration:none; padding:3px 6px; border-radius:4px; border:1px solid var(--line);
-    display:inline-flex; align-items:center;
-  }
-  .rec-icon:hover{background:var(--paper);}
-
-  /* ---------- welcome splash screen ---------- */
-  #splashScreen{
-    position:fixed; inset:0; z-index:9999;
-    background:#0d1a4a;
-    display:flex; align-items:center; justify-content:center;
-    transition:opacity .6s ease;
-    cursor:pointer;
-  }
-  #splashScreen img{
-    max-width:92vw; max-height:92vh; width:auto; height:auto;
-    box-shadow:0 10px 40px rgba(0,0,0,0.4); border-radius:6px;
-  }
-  #splashScreen.fade-out{opacity:0; pointer-events:none;}
-  body.splash-active{overflow:hidden;}
-
-  /* ---------- principal / director message ---------- */
-  .message-card{
-    max-width:780px; margin:36px auto 0; background:#fff; border:1px solid var(--line);
-    border-radius:10px; padding:38px 34px; box-shadow:0 1px 3px rgba(16,25,63,0.06);
-    position:relative;
-  }
-  .message-card::before{
-    content:"“"; font-family:'Amiri', serif; font-size:80px; color:var(--gold); opacity:.25;
-    position:absolute; top:6px; left:20px; line-height:1;
-  }
-  .message-card .msg-bismillah{
-    text-align:center; font-family:'Amiri', serif; font-size:17px; color:var(--gold); margin-bottom:6px;
-  }
-  .message-card .msg-salaam{
-    text-align:center; font-size:13.5px; color:var(--mist); margin-bottom:22px;
-  }
-  .message-card p.msg-body{font-size:15px; line-height:1.95; color:var(--ink); margin-bottom:16px;}
-  .message-card .msg-sign{margin-top:24px; text-align:right;}
-  .message-card .msg-sign .sig-name{font-family:'Amiri', serif; color:var(--navy); font-size:17px; font-weight:700;}
-  .message-card .msg-sign .sig-role{font-size:12.5px; color:var(--gold); letter-spacing:.06em; text-transform:uppercase; margin-top:2px;}
-  body[dir="rtl"] .message-card .msg-sign{text-align:left;}
-  body[dir="rtl"] .message-card::before{left:auto; right:20px;}
-
-  /* ---------- teaching staff grid ---------- */
-  .staff-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:26px;
-    max-width:1200px; margin:0 auto;
-  }
-  .staff-card{
-    border-radius:10px; overflow:hidden; border:1px solid var(--line);
-    box-shadow:0 1px 4px rgba(16,25,63,0.08); transition:transform .18s ease, box-shadow .18s ease;
-    background:#fff;
-  }
-  .staff-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.14);}
-  .staff-card img{width:100%; height:auto; display:block;}
-
-  /* ---------- map ---------- */
-  .map-wrap{
-    max-width:1000px; margin:28px auto 0; border-radius:8px; overflow:hidden;
-    border:1px solid var(--line); box-shadow:0 1px 3px rgba(16,25,63,0.06);
-  }
-  .map-wrap iframe{width:100%; height:340px; border:0; display:block;}
-
-  /* ---------- books / digital library ---------- */
   .books-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px;
-    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px;
   }
   .book-card{
-    background:#fff; border:1px solid var(--line); border-radius:10px;
-    padding:24px 18px; text-align:center;
-    box-shadow:0 1px 4px rgba(16,25,63,0.06); transition:transform .18s ease, box-shadow .18s ease;
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:0; text-align:center;
+    box-shadow:0 1px 4px rgba(16,25,63,0.06); transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    text-decoration:none; color:inherit; overflow:hidden;
   }
-  .book-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.12);}
-  .book-icon{font-size:34px; margin-bottom:8px;}
-  .book-title{font-weight:700; color:var(--navy); font-size:15px;}
-  .book-class{color:var(--mist); font-size:12.5px; margin-top:2px;}
+  .book-card:hover{transform:translateY(-5px); box-shadow:0 12px 26px rgba(16,25,63,0.14); border-color:var(--gold);}
+  .book-cover{
+    background:linear-gradient(135deg, var(--navy), var(--royal));
+    padding:30px 20px 22px; position:relative;
+  }
+  .book-cover::after{
+    content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--gold), transparent 70%);
+  }
+  .book-icon{font-size:38px; filter:drop-shadow(0 3px 6px rgba(0,0,0,0.25));}
+  .book-body{ padding:18px 16px 20px; }
+  .book-class-tag{
+    display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--gold); background:rgba(201,162,39,0.12); padding:3px 10px; border-radius:20px; margin-bottom:10px;
+  }
+  .book-title{font-weight:700; color:var(--navy); font-size:15.5px; line-height:1.4;}
+  .book-dl{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--navy); font-size:12px; margin-top:12px; font-weight:600;
+    border-top:1px solid var(--line); padding-top:12px; width:100%; justify-content:center;
+  }
 
-  /* ---------- admission info cards ---------- */
-  .info-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:26px;
-    max-width:1100px; margin:0 auto; align-items:start;
+  .empty-state{
+    text-align:center; padding:70px 20px; color:var(--mist);
   }
-  .info-card{
-    position:relative; overflow:hidden;
-    background:#fff; border:1px solid var(--line); border-radius:8px; padding:26px 24px;
-  }
-  .info-card::before{
-    content:""; position:absolute; inset:0;
-    background:url('logo.jpg') center/cover no-repeat;
-    filter:blur(6px);
-    opacity:0.2;
-    z-index:0;
-  }
-  .info-card > *{position:relative; z-index:1;}
-  .info-card h3{font-family:'Amiri', serif; color:var(--navy); font-size:19px; margin-bottom:16px; text-align:center;}
-  .info-card table{width:100%; border-collapse:collapse; font-size:13.5px;}
-  .info-card th{
-    text-align:left; padding:8px 6px; color:var(--gold); font-size:11.5px;
-    text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid var(--line);
-    background:rgba(255,255,255,0.65);
-  }
-  .info-card td{padding:8px 6px; border-bottom:1px solid var(--line); color:var(--ink); background:rgba(255,255,255,0.65);}
-  .info-card tr:last-child td{border-bottom:none;}
-  .info-card td:first-child{font-weight:600; color:var(--navy);}
-  body[dir="rtl"] .info-card th, body[dir="rtl"] .info-card td{text-align:right;}
-  .info-card .reg-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:13.5px; background:rgba(255,255,255,0.65);}
-  .info-card .reg-row:last-child{border-bottom:none;}
-  .info-card .reg-row strong{color:var(--navy);}
-  .info-card .reg-row span.val{color:var(--mist); font-weight:600;}
-
-  /* ---------- contact ---------- */
-  .contact{background:var(--royal); color:var(--paper);}
-  .contact .section-head h2{color:#fff;}
-  .contact-card{
-    max-width:700px; margin:0 auto; background:var(--navy);
-    border-radius:8px; padding:40px 34px; text-align:center;
-  }
-  .contact-card .row{font-size:15px; margin-bottom:12px; color:#DEE1EC;}
-  .contact-card .row strong{color:var(--gold); font-weight:600;}
-  .contact-cta-row{margin-top:24px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-
-  footer{
-    background:var(--navy); color:#9AA2BC; text-align:center; padding:28px 6vw; font-size:12.5px;
-  }
-  footer strong{color:var(--paper);}
-
-  /* ---------- language toggle (RTL/Urdu) ---------- */
-  body[dir="rtl"] .i18n{
-    font-family:'Noto Nastaliq Urdu', serif;
-    line-height:2;
-  }
-  body[dir="rtl"] nav .links{flex-direction:row-reverse;}
-  body[dir="rtl"] .hero-cta{flex-direction:row-reverse;}
-  body[dir="rtl"] .contact-cta-row{flex-direction:row-reverse;}
-  body[dir="rtl"] ul{padding-right:18px; padding-left:0;}
+  .empty-state .icon{ font-size:44px; margin-bottom:14px; opacity:.6; }
+  .empty-state .title{ font-weight:700; color:var(--navy); font-size:16px; margin-bottom:6px; }
+  .empty-state .sub{ font-size:13.5px; }
 </style>
 </head>
-<body>
+<body id="pageBody">
 
-<nav>
-  <div class="brand">
-    <img src="logo.jpg" alt="IIES Logo" style="height:52px;">
-    <div class="b-text">
-      <strong>The Iqra Islamic Educational System</strong>
-      <span>IIES · PURAN, SHANGLA</span>
-    </div>
+<header>
+  <div class="header-inner">
+    <a class="back-link" href="index.html#library" id="backLink">← Back</a>
+    <button class="lang-toggle" id="langToggle">اردو</button>
+    <h1 id="pageTitle">Digital Library</h1>
+    <p id="pageSub">The Iqra Islamic Educational System</p>
   </div>
-  <div class="nav-actions">
-    <a href="index.html" class="nav-cta">⬅ Back to Home</a>
-  </div>
-</nav>
+</header>
 
-<section class="section" style="background:var(--paper);">
-  <div class="section-head">
-    <div class="kicker">Digital Library</div>
-    <h2>Books &amp; Study Material</h2>
+<main>
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Search books...">
+    <select id="classFilter">
+      <option value="">All Classes</option>
+    </select>
   </div>
+
+  <div class="book-count" id="bookCount"></div>
+
   <div class="books-grid" id="booksGrid"></div>
-  <p style="text-align:center; font-size:12.5px; color:var(--mist); margin-top:22px;" id="booksEmptyMsg">
-    Loading books…
-  </p>
-</section>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="icon">📚</div>
+    <div class="title" id="emptyTitle">More books coming soon</div>
+    <div class="sub" id="emptySub">Check back later — new material is added regularly.</div>
+  </div>
+</main>
 
 <script>
+  let books = [];
+  let lang = localStorage.getItem('iies-lang') || 'en';
+
+  const grid = document.getElementById('booksGrid');
+  const search = document.getElementById('search');
+  const classFilter = document.getElementById('classFilter');
+  const emptyState = document.getElementById('emptyState');
+  const bookCount = document.getElementById('bookCount');
+
+  const i18nText = {
+    en: { title:"Digital Library", sub:"The Iqra Islamic Educational System", back:"← Back", search:"Search books...", all:"All Classes", emptyTitle:"More books coming soon", emptySub:"Check back later — new material is added regularly.", noResultsTitle:"No books found", noResultsSub:"Try a different search or class filter.", open:"Download", countOne:"1 book available", countMany:" books available" },
+    ur: { title:"ڈیجیٹل لائبریری", sub:"دی اقرا اسلامک ایجوکیشنل سسٹم", back:"← واپس", search:"کتابیں تلاش کریں...", all:"تمام جماعتیں", emptyTitle:"جلد مزید کتابیں شامل ہوں گی", emptySub:"براہ کرم بعد میں دوبارہ ملاحظہ کریں۔", noResultsTitle:"کوئی کتاب نہیں ملی", noResultsSub:"مختلف الفاظ یا جماعت سے تلاش کریں۔", open:"ڈاؤن لوڈ", countOne:"1 کتاب دستیاب ہے", countMany:" کتابیں دستیاب ہیں" }
+  };
+
+  function applyLang(){
+    document.getElementById('pageBody').dir = lang === 'ur' ? 'rtl' : 'ltr';
+    document.getElementById('pageTitle').textContent = i18nText[lang].title;
+    document.getElementById('pageSub').textContent = i18nText[lang].sub;
+    document.getElementById('backLink').textContent = i18nText[lang].back;
+    search.placeholder = i18nText[lang].search;
+    document.getElementById('langToggle').textContent = lang === 'ur' ? 'English' : 'اردو';
+    render();
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    lang = lang === 'ur' ? 'en' : 'ur';
+    localStorage.setItem('iies-lang', lang);
+    applyLang();
+  });
+
+  function populateClassFilter(){
+    const classes = [...new Set(books.map(b => b.class))];
+    classFilter.innerHTML = `<option value="">${i18nText[lang].all}</option>` +
+      classes.map(c => `<option value="${c}">${c}</option>`).join('');
+  }
+
+  function render(){
+    const q = search.value.trim().toLowerCase();
+    const cls = classFilter.value;
+
+    if (books.length === 0){
+      grid.innerHTML = '';
+      bookCount.textContent = '';
+      emptyState.style.display = 'block';
+      document.getElementById('emptyTitle').textContent = i18nText[lang].emptyTitle;
+      document.getElementById('emptySub').textContent = i18nText[lang].emptySub;
+      return;
+    }
+
+    const filtered = books.filter(b => {
+      const matchesSearch = !q || b.title.toLowerCase().includes(q);
+      const matchesClass = !cls || b.class === cls;
+      return matchesSearch && matchesClass;
+    });
+
+    grid.innerHTML = '';
+    if (filtered.length === 0){
+      emptyState.style.display = 'block';
+      bookCount.textContent = '';
+      document.getElementById('emptyTitle').textContent = i18nText[lang].noResultsTitle;
+      document.getElementById('emptySub').textContent = i18nText[lang].noResultsSub;
+      return;
+    }
+    emptyState.style.display = 'none';
+    bookCount.textContent = filtered.length === 1 ? i18nText[lang].countOne : filtered.length + i18nText[lang].countMany;
+
+    filtered.forEach(b => {
+      const a = document.createElement('a');
+      a.className = 'book-card';
+      a.href = b.file;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = `
+        <div class="book-cover"><div class="book-icon">${b.icon || '📘'}</div></div>
+        <div class="book-body">
+          <div class="book-class-tag">${b.class}</div>
+          <div class="book-title">${b.title}</div>
+          <div class="book-dl">⬇ ${i18nText[lang].open}</div>
+        </div>
+      `;
+      grid.appendChild(a);
+    });
+  }
+
+  search.addEventListener('input', render);
+  classFilter.addEventListener('change', render);
+
   fetch('books.json')
     .then(res => res.json())
-    .then(books => {
-      const grid = document.getElementById('booksGrid');
-      const msg = document.getElementById('booksEmptyMsg');
-      if (!books || books.length === 0){
-        msg.textContent = 'More books will be added soon.';
-        return;
-      }
-      grid.innerHTML = books.map(b => `
-        <div class="book-card">
-          <div class="book-icon">${b.icon || '📘'}</div>
-          <div class="book-title">${b.title}</div>
-          <div class="book-class">${b.class}</div>
-          <a href="${b.file}" download class="btn btn-gold" style="margin-top:12px; padding:8px 18px; font-size:13px;">⬇ Download</a>
-        </div>
-      `).join('');
-      msg.textContent = 'More books will be added soon.';
+    .then(data => {
+      books = data;
+      populateClassFilter();
+      applyLang();
     })
     .catch(err => {
-      document.getElementById('booksEmptyMsg').textContent = 'Could not load books. Check books.json.';
+      books = [];
+      applyLang();
       console.error(err);
     });
 </script>
-
-<footer>
-  Copyright © 2026 <strong>The IIES</strong> — The Iqra Islamic Educational System, Puran, Shangla, KPK, Pakistan
-</footer>
 
 </body>
 </html>
