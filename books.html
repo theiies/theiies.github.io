@@ -76,7 +76,7 @@
     background:#fff; border:1px solid var(--line); border-radius:14px;
     padding:0; text-align:center;
     box-shadow:0 1px 4px rgba(16,25,63,0.06); transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    text-decoration:none; color:inherit; overflow:hidden;
+    overflow:hidden;
   }
   .book-card:hover{transform:translateY(-5px); box-shadow:0 12px 26px rgba(16,25,63,0.14); border-color:var(--gold);}
   .book-cover{
@@ -93,12 +93,24 @@
     display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
     color:var(--gold); background:rgba(201,162,39,0.12); padding:3px 10px; border-radius:20px; margin-bottom:10px;
   }
-  .book-title{font-weight:700; color:var(--navy); font-size:15.5px; line-height:1.4;}
-  .book-dl{
-    display:inline-flex; align-items:center; gap:6px;
-    color:var(--navy); font-size:12px; margin-top:12px; font-weight:600;
-    border-top:1px solid var(--line); padding-top:12px; width:100%; justify-content:center;
+  .book-title{font-weight:700; color:var(--navy); font-size:15.5px; line-height:1.4; margin-bottom:14px;}
+  .book-actions{
+    display:flex; gap:8px; border-top:1px solid var(--line); padding-top:14px;
   }
+  .book-action-btn{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+    padding:9px 8px; border-radius:8px; text-decoration:none;
+    font-size:12px; font-weight:700; letter-spacing:.02em;
+    border:1px solid var(--line); transition:background .15s ease, border-color .15s ease;
+  }
+  .book-action-btn.read{
+    color:var(--navy); background:var(--paper);
+  }
+  .book-action-btn.read:hover{ border-color:var(--navy); }
+  .book-action-btn.download{
+    color:#fff; background:var(--navy); border-color:var(--navy);
+  }
+  .book-action-btn.download:hover{ background:var(--royal); }
 
   .empty-state{
     text-align:center; padding:70px 20px; color:var(--mist);
@@ -148,8 +160,8 @@
   const bookCount = document.getElementById('bookCount');
 
   const i18nText = {
-    en: { title:"Digital Library", sub:"The Iqra Islamic Educational System", back:"← Back", search:"Search books...", all:"All Classes", emptyTitle:"More books coming soon", emptySub:"Check back later — new material is added regularly.", noResultsTitle:"No books found", noResultsSub:"Try a different search or class filter.", open:"Download", countOne:"1 book available", countMany:" books available" },
-    ur: { title:"ڈیجیٹل لائبریری", sub:"دی اقرا اسلامک ایجوکیشنل سسٹم", back:"← واپس", search:"کتابیں تلاش کریں...", all:"تمام جماعتیں", emptyTitle:"جلد مزید کتابیں شامل ہوں گی", emptySub:"براہ کرم بعد میں دوبارہ ملاحظہ کریں۔", noResultsTitle:"کوئی کتاب نہیں ملی", noResultsSub:"مختلف الفاظ یا جماعت سے تلاش کریں۔", open:"ڈاؤن لوڈ", countOne:"1 کتاب دستیاب ہے", countMany:" کتابیں دستیاب ہیں" }
+    en: { title:"Digital Library", sub:"The Iqra Islamic Educational System", back:"← Back", search:"Search books...", all:"All Classes", emptyTitle:"More books coming soon", emptySub:"Check back later — new material is added regularly.", noResultsTitle:"No books found", noResultsSub:"Try a different search or class filter.", read:"Read", download:"Download", countOne:"1 book available", countMany:" books available" },
+    ur: { title:"ڈیجیٹل لائبریری", sub:"دی اقرا اسلامک ایجوکیشنل سسٹم", back:"← واپس", search:"کتابیں تلاش کریں...", all:"تمام جماعتیں", emptyTitle:"جلد مزید کتابیں شامل ہوں گی", emptySub:"براہ کرم بعد میں دوبارہ ملاحظہ کریں۔", noResultsTitle:"کوئی کتاب نہیں ملی", noResultsSub:"مختلف الفاظ یا جماعت سے تلاش کریں۔", read:"پڑھیں", download:"ڈاؤن لوڈ", countOne:"1 کتاب دستیاب ہے", countMany:" کتابیں دستیاب ہیں" }
   };
 
   function applyLang(){
@@ -205,20 +217,20 @@
     bookCount.textContent = filtered.length === 1 ? i18nText[lang].countOne : filtered.length + i18nText[lang].countMany;
 
     filtered.forEach(b => {
-      const a = document.createElement('a');
-      a.className = 'book-card';
-      a.href = b.file;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = `
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      card.innerHTML = `
         <div class="book-cover"><div class="book-icon">${b.icon || '📘'}</div></div>
         <div class="book-body">
           <div class="book-class-tag">${b.class}</div>
           <div class="book-title">${b.title}</div>
-          <div class="book-dl">⬇ ${i18nText[lang].open}</div>
+          <div class="book-actions">
+            <a class="book-action-btn read" href="${b.file}" target="_blank" rel="noopener">👁 ${i18nText[lang].read}</a>
+            <a class="book-action-btn download" href="${b.file}" download>⬇ ${i18nText[lang].download}</a>
+          </div>
         </div>
       `;
-      grid.appendChild(a);
+      grid.appendChild(card);
     });
   }
 
