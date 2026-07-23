@@ -124,5 +124,29 @@
     "class": "Grade 7",
     "icon": "🧪",
     "file": "KEYBOOK-SCIENCE-IQBAL-SEVEN-T3.pdf"
+  },
+  {
+    "title": "Maths Keybook",
+    "class": "Grade 3",
+    "icon": "🔢",
+    "file": "KPK-KEYBOOK-MATHS-SUN-THREE__T3_.pdf"
+  },
+  {
+    "title": "Maths Keybook",
+    "class": "Grade 4",
+    "icon": "🔢",
+    "file": "KPK-KEYBOOK-MATHS-SUN-FOUR__T3_.pdf"
+  },
+  {
+    "title": "Maths Keybook",
+    "class": "Grade 6",
+    "icon": "🔢",
+    "file": "KEYBOOK-MATHS-IQBAL-SIX__T3_.pdf"
+  },
+  {
+    "title": "Maths Keybook",
+    "class": "Grade 7",
+    "icon": "🔢",
+    "file": "KEYBOOK-MATHS-IQBAL-SEVEN-_T3_.pdf"
   }
 ]
