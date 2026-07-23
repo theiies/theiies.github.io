@@ -43,6 +43,12 @@
   },
   {
     "title": "Storyline Translation",
+    "class": "Grade 1",
+    "icon": "📘",
+    "file": "english-one-storyline-translation.pdf"
+  },
+  {
+    "title": "Storyline Translation",
     "class": "Grade 6",
     "icon": "📘",
     "file": "english-six-storyline-translation.pdf"
@@ -64,5 +70,17 @@
     "class": "Grade 5",
     "icon": "🧪",
     "file": "science-five-keybook.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 1",
+    "icon": "📘",
+    "file": "english-one-storyline-translation.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 2",
+    "icon": "📘",
+    "file": "english-two-storyline-translation.pdf"
   }
 ]
