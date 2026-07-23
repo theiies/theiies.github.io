@@ -40,5 +40,17 @@
     "class": "Grade 7",
     "icon": "📗",
     "file": "english-seven-keybook.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 6",
+    "icon": "📘",
+    "file": "english-six-storyline-translation.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 7",
+    "icon": "📘",
+    "file": "english-seven-storyline-translation.pdf"
   }
 ]
