@@ -34,5 +34,11 @@
     "class": "Grade 6",
     "icon": "📗",
     "file": "english-six-keybook.pdf"
+  },
+  {
+    "title": "English Keybook",
+    "class": "Grade 7",
+    "icon": "📗",
+    "file": "english-seven-keybook.pdf"
   }
 ]
