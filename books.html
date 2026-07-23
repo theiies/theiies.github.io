@@ -226,7 +226,7 @@
           <div class="book-class-tag">${b.class}</div>
           <div class="book-title">${b.title}</div>
           <div class="book-actions">
-            <a class="book-action-btn read" href="${b.file}" target="_blank" rel="noopener">👁 ${i18nText[lang].read}</a>
+            <a class="book-action-btn read" href="https://docs.google.com/viewer?url=${encodeURIComponent(new URL(b.file, window.location.href).href)}&embedded=true" target="_blank" rel="noopener">👁 ${i18nText[lang].read}</a>
             <a class="book-action-btn download" href="${b.file}" download>⬇ ${i18nText[lang].download}</a>
           </div>
         </div>
