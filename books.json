@@ -73,14 +73,20 @@
   },
   {
     "title": "Storyline Translation",
-    "class": "Grade 1",
-    "icon": "📘",
-    "file": "english-one-storyline-translation.pdf"
-  },
-  {
-    "title": "Storyline Translation",
     "class": "Grade 2",
     "icon": "📘",
     "file": "english-two-storyline-translation.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 3",
+    "icon": "📘",
+    "file": "english-three-storyline-translation.pdf"
+  },
+  {
+    "title": "Storyline Translation",
+    "class": "Grade 4",
+    "icon": "📘",
+    "file": "english-four-storyline-translation.pdf"
   }
 ]
