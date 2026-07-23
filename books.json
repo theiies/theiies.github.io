@@ -52,5 +52,11 @@
     "class": "Grade 7",
     "icon": "📘",
     "file": "english-seven-storyline-translation.pdf"
+  },
+  {
+    "title": "Science Keybook",
+    "class": "Grade 4",
+    "icon": "🧪",
+    "file": "science-four-keybook.pdf"
   }
 ]
