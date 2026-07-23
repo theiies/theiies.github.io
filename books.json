@@ -112,5 +112,17 @@
     "class": "Grade 3",
     "icon": "🌍",
     "file": "GK-THREE-_T3_-SUN_EM_-KEYBOOK.pdf"
+  },
+  {
+    "title": "Science Keybook",
+    "class": "Grade 6",
+    "icon": "🧪",
+    "file": "KEYBOOK-SCIENCE-IQBAL-SIX__T3_.pdf"
+  },
+  {
+    "title": "Science Keybook",
+    "class": "Grade 7",
+    "icon": "🧪",
+    "file": "KEYBOOK-SCIENCE-IQBAL-SEVEN-T3.pdf"
   }
 ]
