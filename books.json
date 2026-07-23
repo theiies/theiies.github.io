@@ -10,5 +10,11 @@
     "class": "Grade 2",
     "icon": "📗",
     "file": "english-two-keybook.pdf"
+  },
+  {
+    "title": "English Keybook",
+    "class": "Grade 3",
+    "icon": "📗",
+    "file": "english-three-keybook.pdf"
   }
 ]
