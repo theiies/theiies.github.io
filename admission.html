@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admission Form — The Iqra Islamic Educational System (IIES)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -399,24 +400,133 @@
   <div class="success-box">
     <div class="tick">✅</div>
     <h2>Form Submitted Successfully</h2>
-    <p>Your admission form has been received. WhatsApp will now open automatically for our three school contacts — please tap <b>Send</b> in each chat to forward your form. You can also print a copy below.</p>
+    <p>A PDF copy of your admission form has been downloaded to your device. WhatsApp will now open automatically for our three school contacts — please <b>attach the downloaded PDF</b> (📎 icon) in each chat and tap Send.</p>
+    <div id="pdfDownloadNote" style="background:#FAF6ED; border:1px solid var(--line); border-radius:6px; padding:12px 14px; font-size:13px; color:var(--navy); margin-bottom:22px; text-align:left;">
+      📄 <b id="pdfFileName">Admission_Form.pdf</b> has been saved to your Downloads. Open each WhatsApp chat, tap the attachment icon, and select this file from Downloads.
+    </div>
     <div class="success-actions">
-      <a id="waSubhan" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Subhan Ullah</a>
-      <a id="waImdad" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Imdad Ullah</a>
-      <a id="waNadeem" class="wa-send-btn" href="#" target="_blank">💬 Send to Sir Nadeem Ullah</a>
-      <button type="button" class="print-btn" onclick="window.print()">🖨️ Print Admission Form</button>
+      <a id="waSubhan" class="wa-send-btn" href="#" target="_blank">💬 Open Chat — Sir Subhan Ullah</a>
+      <a id="waImdad" class="wa-send-btn" href="#" target="_blank">💬 Open Chat — Sir Imdad Ullah</a>
+      <a id="waNadeem" class="wa-send-btn" href="#" target="_blank">💬 Open Chat — Sir Nadeem Ullah</a>
+      <button type="button" class="print-btn" id="redownloadPdfBtn">📥 Download PDF Again</button>
+      <button type="button" class="print-btn" onclick="window.print()" style="background:var(--royal);">🖨️ Print Admission Form</button>
     </div>
     <div id="printSummary"></div>
   </div>
 </div>
 
 <script>
+// ---------- Group fields by section for a clean PDF layout ----------
+var PDF_SECTIONS = [
+  { title: 'Student Information', keys: ['Class Applied For','Student Name','Gender','Date of Birth','B-Form No.','Nationality','Religion','Mother Tongue','Blood Group','Previous School','Last Class Passed'] },
+  { title: "Father's Information", keys: ["Father's Name",'Father CNIC','Father Qualification','Father Occupation','Father Mobile','Father WhatsApp'] },
+  { title: 'Residential Address', keys: ['House No.','Village/Area','Tehsil','District','Postal Code'] },
+  { title: 'Emergency Contact', keys: ['Emergency Name','Emergency Relationship','Emergency Mobile'] },
+  { title: 'Documents Attached', keys: ['Documents','Other Documents'] },
+  { title: 'Transport Facility', keys: ['Transport','Pickup Location'] },
+  { title: "Parent's Declaration", keys: ['Declaration','Guardian Signature'] }
+];
+
+// Build { fieldName: value } map from FormData, merging repeated checkbox values
+function buildDataMap(formData){
+  var map = {};
+  for (var pair of formData.entries()) {
+    var key = pair[0];
+    var val = (pair[1] || '').toString().trim();
+    if (!val) continue;
+    map[key] = map[key] ? (map[key] + ', ' + val) : val;
+  }
+  return map;
+}
+
+// Generate a styled, navy-and-gold branded PDF of the admission form and trigger a download.
+// Returns the filename used, so the caller can show it in the UI.
+function generateAdmissionPDF(dataMap){
+  var jsPDF = window.jspdf.jsPDF;
+  var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  var pageWidth = doc.internal.pageSize.getWidth();
+  var pageHeight = doc.internal.pageSize.getHeight();
+  var margin = 15;
+  var y = 40;
+
+  function drawHeader(){
+    doc.setFillColor(16,25,63); // navy
+    doc.rect(0, 0, pageWidth, 32, 'F');
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(16);
+    doc.text('THE IQRA ISLAMIC EDUCATIONAL SYSTEM', pageWidth/2, 14, { align:'center' });
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(10);
+    doc.text('Admission Form — Puran, Shangla, KPK, Pakistan', pageWidth/2, 21, { align:'center' });
+    doc.setTextColor(201,162,39); // gold
+    doc.setFontSize(9);
+    doc.text('Session 2026-27', pageWidth/2, 27, { align:'center' });
+    doc.setTextColor(30,36,48);
+  }
+
+  function ensureSpace(needed){
+    if (y + needed > pageHeight - 18) {
+      doc.addPage();
+      y = 20;
+    }
+  }
+
+  drawHeader();
+
+  PDF_SECTIONS.forEach(function(sec){
+    var rows = sec.keys.filter(function(k){ return dataMap[k]; });
+    if (rows.length === 0) return;
+
+    ensureSpace(16);
+
+    // Section header bar
+    doc.setFillColor(250,246,237);
+    doc.rect(margin, y, pageWidth - margin*2, 8, 'F');
+    doc.setDrawColor(201,162,39);
+    doc.setLineWidth(0.3);
+    doc.line(margin, y + 8, pageWidth - margin, y + 8);
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(11);
+    doc.setTextColor(16,25,63);
+    doc.text(sec.title, margin + 2, y + 5.5);
+    y += 13;
+
+    doc.setFontSize(10);
+    doc.setTextColor(30,36,48);
+
+    rows.forEach(function(key){
+      var value = String(dataMap[key]);
+      var valueLines = doc.splitTextToSize(value, pageWidth - margin*2 - 55);
+      ensureSpace(Math.max(6, valueLines.length * 5));
+      doc.setFont('helvetica','bold');
+      doc.text(key + ':', margin + 2, y);
+      doc.setFont('helvetica','normal');
+      doc.text(valueLines, margin + 55, y);
+      y += Math.max(6, valueLines.length * 5);
+    });
+
+    y += 4;
+  });
+
+  // Footer timestamp on last page
+  doc.setFontSize(8);
+  doc.setTextColor(120,120,120);
+  doc.text('Generated on ' + new Date().toLocaleString(), margin, pageHeight - 10);
+
+  var studentName = (dataMap['Student Name'] || 'Form').replace(/[^a-zA-Z0-9]+/g, '_');
+  var fileName = 'Admission_' + studentName + '.pdf';
+  doc.save(fileName);
+  return fileName;
+}
+
 document.getElementById('admissionForm').addEventListener('submit', function(e){
   e.preventDefault();
   var form = e.target;
   var formData = new FormData(form);
+  var dataMap = buildDataMap(formData);
 
-  // Build a readable summary of all filled fields
+  // Build a readable text summary (kept for the WhatsApp message body + print view)
   var lines = [];
   var printLines = [];
   lines.push("*THE IQRA ISLAMIC EDUCATIONAL SYSTEM — Admission Form*");
@@ -429,10 +539,10 @@ document.getElementById('admissionForm').addEventListener('submit', function(e){
       printLines.push('<div class="pline"><b>' + key + ':</b> ' + val + '</div>');
     }
   }
-  var summaryText = lines.join("\n");
+  var summaryText = lines.join("\n") + "\n\n(PDF copy also downloaded — please attach it here.)";
   document.getElementById('printSummary').innerHTML = printLines.join("");
 
-  // Build WhatsApp forward links with the prefilled summary
+  // Build WhatsApp forward links with the prefilled summary text
   var encoded = encodeURIComponent(summaryText);
   var waLinks = [
     "https://wa.me/923440929329?text=" + encoded,
@@ -443,6 +553,13 @@ document.getElementById('admissionForm').addEventListener('submit', function(e){
   document.getElementById('waImdad').href = waLinks[1];
   document.getElementById('waNadeem').href = waLinks[2];
 
+  // Generate and download the branded PDF right away
+  var pdfFileName = generateAdmissionPDF(dataMap);
+  document.getElementById('pdfFileName').textContent = pdfFileName;
+  document.getElementById('redownloadPdfBtn').onclick = function(){
+    generateAdmissionPDF(dataMap);
+  };
+
   // Submit to Formspree in the background
   fetch(form.action, {
     method: 'POST',
@@ -452,7 +569,7 @@ document.getElementById('admissionForm').addEventListener('submit', function(e){
     form.style.display = 'none';
     document.getElementById('successScreen').style.display = 'block';
     window.scrollTo(0,0);
-    // Automatically open WhatsApp chats for all three numbers (one tap "Send" needed in each)
+    // Automatically open WhatsApp chats for all three numbers (one tap "Send" + attach PDF needed in each)
     waLinks.forEach(function(link, i){
       setTimeout(function(){ window.open(link, '_blank'); }, i * 700);
     });
