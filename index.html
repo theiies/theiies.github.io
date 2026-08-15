@@ -25,18 +25,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Iqra Islamic Educational System (IIES) — Puran, Shangla</title>
-<meta name="description" content="The Iqra Islamic Educational System (IIES) is a school in Puran, Shangla, Khyber Pakhtunkhwa, Pakistan, combining modern education with Islamic values — offering Nursery to Grade 8, Quran, Tajweed, and character building.">
-<meta name="keywords" content="IIES, Iqra Islamic Educational System, school in Puran, school in Shangla, Islamic school KPK, Quran school Shangla, best school Puran Shangla">
-<link rel="canonical" href="https://theiies.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Iqra Islamic Educational System (IIES) — Puran, Shangla">
-<meta property="og:description" content="A school in Puran, Shangla combining modern education with Islamic values — Nursery to Grade 8, Quran, Tajweed, and character building.">
-<meta property="og:url" content="https://theiies.github.io/">
-<meta property="og:image" content="https://theiies.github.io/logo.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Iqra Islamic Educational System (IIES) — Puran, Shangla">
-<meta name="twitter:description" content="A school in Puran, Shangla combining modern education with Islamic values.">
-<meta name="twitter:image" content="https://theiies.github.io/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -86,10 +74,6 @@
     background:var(--navy); color:var(--paper);
     padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
   }
-  .nav-lang-btn{
-    background:var(--gold); color:var(--navy); border:none; cursor:pointer;
-    padding:9px 20px; border-radius:3px; font-size:13px; font-weight:600;
-  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -119,6 +103,51 @@
   }
   .hero .loc{font-size:13.5px; color:#B9C0D6; margin-bottom:34px;}
   .hero-cta{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-bottom:60px;}
+
+  /* ---------- hero entrance animation ---------- */
+  @keyframes heroUp{
+    from{opacity:0; transform:translateY(26px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes floatLogo{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-9px);}
+  }
+  @keyframes glowPulse{
+    0%,100%{opacity:.15; transform:scale(1);}
+    50%{opacity:.4; transform:scale(1.08);}
+  }
+  .hero{ position:relative; }
+  .hero::after{
+    content:""; position:absolute; top:-10%; right:-5%; width:60%; height:70%;
+    background:radial-gradient(circle, rgba(201,162,39,0.4), transparent 60%);
+    animation:glowPulse 5s ease-in-out infinite;
+    pointer-events:none; z-index:0;
+  }
+  .hero > *{position:relative; z-index:1;}
+  .hero-logo{opacity:0; transform:translateY(26px);}
+  .hero .eyebrow{opacity:0; transform:translateY(26px);}
+  .hero h1{opacity:0; transform:translateY(26px);}
+  .hero .short{opacity:0; transform:translateY(26px);}
+  .hero .tagline{opacity:0; transform:translateY(26px);}
+  .hero .loc{opacity:0; transform:translateY(26px);}
+  .hero-cta .btn{opacity:0; transform:translateY(26px);}
+
+  body.hero-animate .hero-logo{
+    animation:heroUp .9s cubic-bezier(.2,.7,.25,1) both, floatLogo 4s ease-in-out .9s infinite;
+  }
+  body.hero-animate .hero .eyebrow{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .12s both;}
+  body.hero-animate .hero h1{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
+  body.hero-animate .hero .short{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .34s both;}
+  body.hero-animate .hero .tagline{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .44s both;}
+  body.hero-animate .hero .loc{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .54s both;}
+  body.hero-animate .hero-cta .btn{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .66s both;}
+  body.hero-animate .hero-cta .btn:nth-child(2){animation-delay:.76s;}
+  @media (prefers-reduced-motion: reduce){
+    .hero-logo, .hero .eyebrow, .hero h1, .hero .short, .hero .tagline, .hero .loc, .hero-cta .btn, .hero::after{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     padding:13px 28px; border-radius:3px; font-weight:600; font-size:14.5px;
@@ -127,7 +156,6 @@
   .btn:hover{transform:translateY(-2px);}
   .btn-gold{background:var(--gold); color:var(--navy);}
   .btn-outline{border:1px solid rgba(250,246,237,0.4); color:var(--paper);}
-  .btn-outline-light{border:1px solid var(--line); color:var(--navy); background:transparent;}
 
   .arch-divider{display:block; width:100%; height:auto;}
 
@@ -351,53 +379,10 @@
     display:flex; align-items:center; justify-content:center;
     transition:opacity .6s ease;
     cursor:pointer;
-    overflow-y:auto;
   }
-  #splashScreen .splash-inner{
-    display:flex; flex-direction:column; align-items:center;
-    padding: 30px 20px; text-align:center; max-width:420px;
-  }
-  #splashScreen .splash-logo{
-    width:64px; height:64px; border-radius:50%;
-    margin-bottom:10px; box-shadow:0 4px 16px rgba(0,0,0,0.3);
-  }
-  #splashScreen .splash-character{
-    width:170px; margin: 6px 0 14px;
-    animation: splashFloat 2.6s ease-in-out infinite;
-  }
-  #splashScreen .splash-student-photo{
-    width:100%; height:auto;
-    border-radius: 14px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-    border: 3px solid rgba(212,160,23,0.8);
-    object-fit: cover;
-  }
-  @keyframes splashFloat{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-8px); }
-  }
-  #splashScreen .speech-bubble{
-    background:#fff; color:var(--navy, #0d1a4a);
-    border-radius:16px; padding:16px 20px;
-    position:relative; margin-bottom:8px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.25);
-  }
-  #splashScreen .speech-bubble::after{
-    content:''; position:absolute; top:-10px; left:50%; transform:translateX(-50%);
-    border-width:0 10px 10px 10px; border-style:solid;
-    border-color:transparent transparent #fff transparent;
-  }
-  #splashScreen .speech-bubble p{
-    margin:0; font-size:14.5px; line-height:1.55; font-weight:600;
-  }
-  #splashScreen .splash-hint{
-    color: rgba(255,255,255,0.6); font-size:12px; margin-top:14px;
-    letter-spacing:.04em;
-  }
-  #splashScreen img.splash-banner{
-    max-width:92vw; max-height:40vh; width:auto; height:auto;
+  #splashScreen img{
+    max-width:92vw; max-height:92vh; width:auto; height:auto;
     box-shadow:0 10px 40px rgba(0,0,0,0.4); border-radius:6px;
-    margin-bottom:16px;
   }
   #splashScreen.fade-out{opacity:0; pointer-events:none;}
   body.splash-active{overflow:hidden;}
@@ -444,56 +429,6 @@
     border:1px solid var(--line); box-shadow:0 1px 3px rgba(16,25,63,0.06);
   }
   .map-wrap iframe{width:100%; height:340px; border:0; display:block;}
-
-  /* ---------- books / digital library ---------- */
-  .library-promo-card{
-    display:flex; align-items:center; gap:22px;
-    max-width:720px; margin:0 auto;
-    background:#fff; border:1px solid var(--line); border-radius:16px;
-    padding:26px 28px; text-decoration:none;
-    box-shadow:0 2px 10px rgba(16,25,63,0.06);
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .library-promo-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 26px rgba(16,25,63,0.12);
-    border-color:var(--gold);
-  }
-  .library-promo-icon{
-    flex-shrink:0;
-    width:72px; height:72px; border-radius:14px;
-    background:linear-gradient(135deg, var(--paper), #fff);
-    border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .library-promo-text{ flex:1; min-width:0; }
-  .library-promo-title{
-    font-weight:700; color:var(--navy); font-size:17px; margin-bottom:4px;
-  }
-  .library-promo-sub{
-    font-size:13px; color:var(--mist); line-height:1.5;
-  }
-  .library-promo-arrow{
-    flex-shrink:0; width:36px; height:36px; border-radius:50%;
-    background:var(--paper); display:flex; align-items:center; justify-content:center;
-  }
-  @media (max-width:560px){
-    .library-promo-card{ flex-wrap:wrap; padding:22px; }
-    .library-promo-arrow{ display:none; }
-  }
-  .books-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:22px;
-    max-width:1100px; margin:0 auto;
-  }
-  .book-card{
-    background:#fff; border:1px solid var(--line); border-radius:10px;
-    padding:24px 18px; text-align:center;
-    box-shadow:0 1px 4px rgba(16,25,63,0.06); transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .book-card:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(16,25,63,0.12);}
-  .book-icon{font-size:34px; margin-bottom:8px;}
-  .book-title{font-weight:700; color:var(--navy); font-size:15px;}
-  .book-class{color:var(--mist); font-size:12.5px; margin-top:2px;}
 
   /* ---------- admission info cards ---------- */
   .info-grid{
@@ -553,26 +488,22 @@
   body[dir="rtl"] .hero-cta{flex-direction:row-reverse;}
   body[dir="rtl"] .contact-cta-row{flex-direction:row-reverse;}
   body[dir="rtl"] ul{padding-right:18px; padding-left:0;}
+  /* ---------- scroll reveal ---------- */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.2,.7,.25,1), transform .8s cubic-bezier(.2,.7,.25,1);
+    will-change:opacity, transform;
+  }
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+  }
 </style>
 </head>
 <body class="splash-active">
 
 <div id="splashScreen" onclick="dismissSplash()">
-  <div class="splash-inner">
-    <img src="welcome-banner.jpg" class="splash-banner" alt="Welcome to The Iqra Islamic Educational System">
-
-    <div class="splash-character">
-      <img src="welcome-student.jpg" alt="Welcome from an IIES student" class="splash-student-photo">
-    </div>
-
-    <div class="speech-bubble">
-      <p class="i18n"
-         data-en="Welcome to The Iqra Islamic Educational System, Puran! Thank you for visiting our site."
-         data-ur="دی اقرا اسلامک ایجوکیشنل سسٹم، پُران میں خوش آمدید! ہماری ویب سائٹ وزٹ کرنے کا شکریہ۔">Welcome to The Iqra Islamic Educational System, Puran! Thank you for visiting our site.</p>
-    </div>
-
-    <div class="splash-hint i18n" data-en="Tap anywhere to continue" data-ur="جاری رکھنے کے لیے کہیں بھی ٹیپ کریں">Tap anywhere to continue</div>
-  </div>
+  <img src="welcome-banner.jpg" alt="Welcome to The Iqra Islamic Educational System">
 </div>
 
 
@@ -593,7 +524,7 @@
   </div>
   <div class="nav-actions">
     <a href="#contact" class="nav-cta"><span class="i18n" data-en="Contacts" data-ur="رابطہ کریں">Contacts</span></a>
-    <button id="langToggle" onclick="toggleLanguage()" class="nav-lang-btn">اردو</button>
+    <button id="langToggle" onclick="toggleLanguage()" style="background:var(--gold); border:none; color:var(--navy); padding:9px 14px; border-radius:3px; font-size:13px; font-weight:700; cursor:pointer;">اردو</button>
   </div>
 </nav>
 
@@ -734,47 +665,22 @@
 <section class="section" id="leadership">
   <div class="section-head">
     <div class="kicker i18n" data-en="Our Leadership" data-ur="ہماری قیادت">Our Leadership</div>
-    <h2 class="i18n" data-en="School Owners" data-ur="سکول کے مالکان">School Owners</h2>
+    <h2 class="i18n" data-en="Principal &amp; Vice Principal" data-ur="پرنسپل اور وائس پرنسپل">Principal &amp; Vice Principal</h2>
   </div>
-  <div class="lead-grid">
+  <div class="lead-grid" style="max-width:520px; margin-bottom:64px;">
     <div class="lead-card">
-      <div class="arch-photo"><img src="owner1.jpg" alt="Engr. Subhan Ullah"></div>
-      <h3>Engr. Subhan Ullah</h3>
-      <div class="role i18n" data-en="Founder &amp; Director" data-ur="بانی اور ڈائریکٹر">Founder &amp; Director</div>
-      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Strategy, Career Counseling &amp; Institutional Growth" data-ur="حکمت عملی، کیریئر کونسلنگ اور ادارہ جاتی ترقی">Strategy, Career Counseling &amp; Institutional Growth</div>
+      <div class="arch-photo"><img src="principal.jpg" alt="Sir Fazal Azim"></div>
+      <h3>Sir Fazal Azim</h3>
+      <div class="role i18n" data-en="Principal" data-ur="پرنسپل">Principal</div>
     </div>
     <div class="lead-card">
-      <div class="arch-photo"><img src="owner2.jpg" alt="Engr. Imdad Ullah Momin"></div>
-      <h3>Engr. Imdad Ullah Momin</h3>
-      <div class="role i18n" data-en="Founder &amp; Academic Director" data-ur="بانی اور اکیڈمک ڈائریکٹر">Founder &amp; Academic Director</div>
-      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Academics, Curriculum &amp; Islamic Education" data-ur="تعلیم، نصاب اور اسلامی تعلیمات">Academics, Curriculum &amp; Islamic Education</div>
-    </div>
-    <div class="lead-card">
-      <div class="arch-photo"><img src="owner3.jpg" alt="Maulana Muhammad Hussain"></div>
-      <h3>Maulana Muhammad Hussain</h3>
-      <div class="role i18n" data-en="Founder &amp; Operations Director" data-ur="بانی اور آپریشنز ڈائریکٹر">Founder &amp; Operations Director</div>
-      <div class="i18n" style="font-size:12.5px; color:var(--mist); font-style:italic; margin-top:4px;" data-en="Administration, Finance &amp; Student Services" data-ur="انتظامیہ، مالیات اور طلبہ کی خدمات">Administration, Finance &amp; Student Services</div>
+      <div class="arch-photo"><img src="vice-principal.jpg" alt="Sir Nadeem Ullah"></div>
+      <h3>Sir Nadeem Ullah</h3>
+      <div class="role i18n" data-en="Vice Principal" data-ur="وائس پرنسپل">Vice Principal</div>
     </div>
   </div>
 
-  <div class="section-head" style="margin-top:56px;">
-    <div class="kicker i18n" data-en="Meet the Team" data-ur="ٹیم سے ملیں">Meet the Team</div>
-    <h2 class="i18n" data-en="Our Teaching Staff" data-ur="ٹیچنگ سٹاف">Our Teaching Staff</h2>
-  </div>
-  <div class="staff-grid">
-    <div class="staff-card"><img src="staff-fazal-azim.jpg" alt="Fazal Azim - Principal"></div>
-    <div class="staff-card"><img src="staff-nadeem-ullah.jpg" alt="Nadeem Ullah - Vice Principal"></div>
-    <div class="staff-card"><img src="staff-muhammad-arshad.jpg" alt="Muhammad Arshad - Accountant and Finance"></div>
-    <div class="staff-card"><img src="staff-azhar-uddin.jpg" alt="Azhar Uddin - Chief Protector"></div>
-    <div class="staff-card"><img src="staff-arshad-ali.jpg" alt="Arshad Ali - Science Teacher"></div>
-    <div class="staff-card"><img src="staff-amjad-ali.jpg" alt="Amjad Ali - Teacher"></div>
-    <div class="staff-card"><img src="staff-rahmat-hadi.jpg" alt="Rahmat Hadi - Teacher"></div>
-    <div class="staff-card"><img src="staff-ijaz-ahmad.jpg" alt="Ijaz Ahmad - Teacher"></div>
-    <div class="staff-card"><img src="staff-fawad-ali.jpg" alt="Fawad Ali - Urdu Teacher"></div>
-    <div class="staff-card"><img src="staff-muhammad-sudais.jpg" alt="Muhammad Sudais - Teacher (PST)"></div>
-  </div>
-
-  <div class="message-card" style="margin-top:56px;">
+  <div class="message-card">
     <div class="msg-bismillah">بسم اللہ الرحمن الرحیم</div>
     <div class="msg-salaam i18n" data-en="Assalamu Alaikum Warahmatullahi Wabarakatuh" data-ur="السلام علیکم ورحمۃ اللہ وبرکاتہ">Assalamu Alaikum Warahmatullahi Wabarakatuh</div>
 
@@ -805,27 +711,46 @@
     </div>
   </div>
 
-  <div class="message-card" style="margin-top:40px;">
-    <div style="text-align:center; margin-bottom:20px;">
-      <div style="font-family:'Amiri', serif; color:var(--gold); font-size:13px; text-transform:uppercase; letter-spacing:.08em;">Message from the Director</div>
-      <div class="sig-name" style="font-size:20px; margin-top:6px;">Engr. Subhan Ullah</div>
-      <div style="font-size:12.5px; color:var(--mist); margin-top:4px;">B.S Civil Engineering, UET Peshawar | B.Ed, AIOU Islamabad</div>
-      <div class="sig-role" style="margin-top:4px;">Director, The Iqra Islamic Educational System</div>
+  <div class="section-head" style="margin-top:56px;">
+    <div class="kicker i18n" data-en="Our Leadership" data-ur="ہماری قیادت">Our Leadership</div>
+    <h2 class="i18n" data-en="School Owners" data-ur="سکول کے مالکان">School Owners</h2>
+  </div>
+  <div class="lead-grid">
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner1.jpg" alt="Sir Subhan Ullah"></div>
+      <h3>Sir Subhan Ullah</h3>
+      <div class="role i18n" data-en="Owner" data-ur="مالک">Owner</div>
     </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner2.jpg" alt="Sir Imdad Ullah Momin"></div>
+      <h3>Sir Imdad Ullah Momin</h3>
+      <div class="role">Owner</div>
+    </div>
+    <div class="lead-card">
+      <div class="arch-photo"><img src="owner3.jpg" alt="Sir Muhammad Hussain"></div>
+      <h3>Sir Muhammad Hussain</h3>
+      <div class="role">Owner</div>
+    </div>
+  </div>
 
-    <p class="msg-body" style="font-style:italic; text-align:center; color:var(--navy); border-left:3px solid var(--gold); border-right:3px solid var(--gold); padding:0 18px;">
-      "At THE IIES, we believe education is more than books — it is about building character, career, and faith together."
-    </p>
-
-    <p class="msg-body">With 8+ years of experience in education and management, my vision is simple: to provide modern, quality education alongside Islamic values and counseling, in a friendly and nurturing environment.</p>
-
-    <p class="msg-body">We focus not only on academic excellence but also on career guidance to help every student discover their purpose and potential.</p>
-
-    <p class="msg-body">Our goal is to raise confident, capable, and God-conscious individuals who can serve themselves, their families, and our nation with knowledge and integrity.</p>
-
-    <p style="text-align:center; font-family:'Amiri', serif; color:var(--gold); font-size:17px; font-weight:700; margin-top:20px;">
-      Come to Know. Go to Glow.
-    </p>
+  <div class="section-head" style="margin-top:56px;">
+    <div class="kicker i18n" data-en="Meet the Team" data-ur="ٹیم سے ملیں">Meet the Team</div>
+    <h2 class="i18n" data-en="Our Teaching Staff" data-ur="ٹیچنگ سٹاف">Our Teaching Staff</h2>
+  </div>
+  <div class="staff-grid">
+    <div class="staff-card"><img src="staff-fazal-azim.jpg" alt="Fazal Azim - Principal"></div>
+    <div class="staff-card"><img src="staff-nadeem-ullah.jpg" alt="Nadeem Ullah - Vice Principal"></div>
+    <div class="staff-card"><img src="staff-subhan-ullah.jpg" alt="Subhan Ullah - Director"></div>
+    <div class="staff-card"><img src="staff-imdad-ullah-momin.jpg" alt="Imdad Ullah Momin - Director"></div>
+    <div class="staff-card"><img src="staff-muhammad-husain.jpg" alt="Muhammad Husain - Director / Teacher"></div>
+    <div class="staff-card"><img src="staff-muhammad-arshad.jpg" alt="Muhammad Arshad - Accountant and Finance"></div>
+    <div class="staff-card"><img src="staff-azhar-uddin.jpg" alt="Azhar Uddin - Chief Protector"></div>
+    <div class="staff-card"><img src="staff-arshad-ali.jpg" alt="Arshad Ali - Science Teacher"></div>
+    <div class="staff-card"><img src="staff-amjad-ali.jpg" alt="Amjad Ali - Teacher"></div>
+    <div class="staff-card"><img src="staff-rahmat-hadi.jpg" alt="Rahmat Hadi - Teacher"></div>
+    <div class="staff-card"><img src="staff-ijaz-ahmad.jpg" alt="Ijaz Ahmad - Teacher"></div>
+    <div class="staff-card"><img src="staff-fawad-ali.jpg" alt="Fawad Ali - Urdu Teacher"></div>
+    <div class="staff-card"><img src="staff-muhammad-sudais.jpg" alt="Muhammad Sudais - Teacher (PST)"></div>
   </div>
 </section>
 
@@ -986,14 +911,6 @@
   <div class="news-grid">
 
     <div class="news-card">
-      <img src="news-reopening-aug2026.jpg" alt="School reopening announcement" style="width:100%; display:block;">
-      <span class="news-tag i18n" data-en="Announcement" data-ur="اعلان">Announcement</span>
-      <h3 class="i18n" data-en="School Reopens — Monday, 3 August 2026" data-ur="اسکول کا دوبارہ آغاز — 3 اگست، بروز پیر">School Reopens — Monday, 3 August 2026</h3>
-      <div class="news-date">3 August 2026</div>
-      <p class="news-body i18n" data-en="All students of the Aloch Puran campus will return to school on Monday, 3 August. Parents are requested to make sure homework is complete, ensure punctual daily attendance, and support continued learning at home so there is no gap in their child's education." data-ur="الوچ پوران کیمپس کے تمام طلباء ان‌شاءاللہ پیر، 3 اگست سے اسکول واپس آئیں گے۔ والدین سے گزارش ہے کہ بچوں کا ہوم ورک مکمل کروائیں، وقت کی پابندی اور روزانہ حاضری یقینی بنائیں، اور تعلیمی سفر میں خلا پیدا نہ ہونے دیں۔">All students of the Aloch Puran campus will return to school on Monday, 3 August. Parents are requested to make sure homework is complete, ensure punctual daily attendance, and support continued learning at home so there is no gap in their child's education.</p>
-    </div>
-
-    <div class="news-card">
       <span class="news-tag i18n" data-en="Announcement" data-ur="اعلان">Announcement</span>
       <h3 class="i18n" data-en="Admissions Open for Session 2026–27" data-ur="سیشن 2026–27 کے لیے داخلے کھلے ہیں">Admissions Open for Session 2026–27</h3>
       <div class="news-date">10 February 2026</div>
@@ -1023,34 +940,6 @@
   <div class="fb-feed-wrap">
     <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100047533705911&amp;tabs=timeline&amp;width=560&amp;height=600&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true" height="600" scrolling="no" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="IIES Facebook Page Feed"></iframe>
   </div>
-</section>
-
-<section class="section" id="library">
-  <div class="section-head">
-    <div class="kicker i18n" data-en="Digital Library" data-ur="ڈیجیٹل لائبریری">Digital Library</div>
-    <h2 class="i18n" data-en="Books &amp; Study Material" data-ur="کتابیں اور تعلیمی مواد">Books &amp; Study Material</h2>
-  </div>
-
-  <a href="books.html" class="library-promo-card">
-    <div class="library-promo-icon">
-      <svg viewBox="0 0 64 64" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" fill="var(--gold)" opacity="0.18"/>
-        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" fill="var(--navy)" opacity="0.12"/>
-        <path d="M8 12c6-4 14-4 20 0v38c-6-4-14-4-20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M56 12c-6-4-14-4-20 0v38c6-4 14-4 20 0V12Z" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M28 12v38M14 20h8M14 28h8M42 20h8M42 28h8" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="library-promo-text">
-      <div class="library-promo-title i18n" data-en="Open the Digital Library" data-ur="ڈیجیٹل لائبریری کھولیں">Open the Digital Library</div>
-      <div class="library-promo-sub i18n" data-en="Browse and download textbooks, Islamiyat material, and study guides — organized by class." data-ur="نصابی کتابیں، اسلامیات کا مواد اور تعلیمی رہنما — جماعت کے لحاظ سے ترتیب دی گئی۔">Browse and download textbooks, Islamiyat material, and study guides — organized by class.</div>
-    </div>
-    <div class="library-promo-arrow">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 6l6 6-6 6" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </a>
 </section>
 
 <section class="section" style="background:#fff;" id="gallery">
@@ -1112,13 +1001,13 @@
   <div class="contact-card">
     <div class="row"><strong class="i18n" data-en="School" data-ur="سکول">School</strong> — The Iqra Islamic Educational System (IIES)</div>
     <div class="row"><strong class="i18n" data-en="Location" data-ur="مقام">Location</strong> — Aloch Puran, District Shangla, KPK, Pakistan</div>
-    <div class="row"><strong class="i18n" data-en="Owners" data-ur="مالکان">Owners</strong> — Engr. Subhan Ullah &amp; Engr. Imdad Ullah Momin</div>
+    <div class="row"><strong class="i18n" data-en="Owners" data-ur="مالکان">Owners</strong> — Sir Subhan Ullah &amp; Sir Imdad Ullah Momin</div>
     <div class="row"><strong class="i18n" data-en="Email" data-ur="ای میل">Email</strong> — <a href="mailto:imdadullahmomen@gmail.com" style="color:var(--gold);">imdadullahmomen@gmail.com</a> · <a href="mailto:Khan.dg2020@gmail.com" style="color:var(--gold);">Khan.dg2020@gmail.com</a></div>
     <div class="contact-cta-row">
       <a href="admission.html" class="btn btn-gold"><span class="i18n" data-en="📝 Fill Admission Form" data-ur="📝 داخلہ فارم پُر کریں">📝 Fill Admission Form</span></a>
       <a href="prospectus.pdf" download class="btn btn-outline"><span class="i18n" data-en="📥 Download Prospectus" data-ur="📥 پراسپیکٹس ڈاؤن لوڈ کریں">📥 Download Prospectus</span></a>
-      <a href="https://wa.me/923459818813" class="btn btn-gold">💬 WhatsApp — Engr. Imdad Ullah</a>
-      <a href="https://wa.me/923440929329" class="btn btn-gold">💬 WhatsApp — Engr. Subhan Ullah</a>
+      <a href="https://wa.me/923459818813" class="btn btn-gold">💬 WhatsApp — Sir Imdad Ullah</a>
+      <a href="https://wa.me/923440929329" class="btn btn-gold">💬 WhatsApp — Sir Subhan Ullah</a>
       <a href="https://wa.me/923412565659" class="btn btn-gold">💬 WhatsApp — Sir Nadeem Ullah</a>
       <a href="mailto:imdadullahmomen@gmail.com" class="btn btn-outline"><span class="i18n" data-en="✉ Email Us" data-ur="✉ ای میل کریں">✉ Email Us</span></a>
       <a href="https://www.facebook.com/profile.php?id=100047533705911" target="_blank" rel="noopener" class="btn btn-outline"><span class="i18n" data-en="📘 Follow on Facebook" data-ur="📘 فیس بک پر فالو کریں">📘 Follow on Facebook</span></a>
@@ -1129,7 +1018,7 @@
     <iframe src="https://www.google.com/maps?q=The+Iqra+Islamic+Educational+System+Puran+Aloch&ll=34.7437075,72.6849352&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="IIES Location Map"></iframe>
   </div>
   <div style="text-align:center; margin-top:16px;">
-    <a href="https://maps.google.com/?cid=1251130906772228282" target="_blank" rel="noopener" class="btn btn-outline-light"><span class="i18n" data-en="📍 Get Directions" data-ur="📍 راستہ معلوم کریں">📍 Get Directions</span></a>
+    <a href="https://maps.google.com/?cid=1251130906772228282" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--line); color:var(--navy); display:inline-flex;"><span class="i18n" data-en="📍 Get Directions" data-ur="📍 راستہ معلوم کریں">📍 Get Directions</span></a>
   </div>
 </section>
 
@@ -1161,7 +1050,7 @@
         <label class="i18n" data-en="Parent Number" data-ur="والدین کا نمبر">Parent Number</label>
         <input type="tel" id="recParentNumber" placeholder="03XX-XXXXXXX">
       </div>
-      <button class="btn btn-gold" onclick="saveRecord()" style="border:none; cursor:pointer;"><span class="i18n" data-en="💾 Save" data-ur="💾 محفوظ کریں">💾 Save</span></button>
+      <button class="btn btn-gold" onclick="saveRecord()" style="border:none; cursor:pointer; padding:10px 20px;"><span class="i18n" data-en="💾 Save" data-ur="💾 محفوظ کریں">💾 Save</span></button>
     </div>
 
     <div class="records-table-wrap">
@@ -1177,38 +1066,14 @@
         <tbody id="recordsBody"></tbody>
       </table>
     </div>
-
-    <div style="max-width:600px; margin:34px auto 0; border:1px solid var(--line); border-radius:10px; overflow:hidden;">
-      <div style="background:var(--navy); color:#fff; padding:14px 18px; font-size:14px; font-weight:600;">
-        <span class="i18n" data-en="General Message" data-ur="عمومی پیغام">General Message</span>
-      </div>
-      <div id="msgChatArea" style="background:#f0f0f0; min-height:200px; max-height:340px; overflow-y:auto; padding:16px;">
-        <p id="msgChatEmpty" style="color:var(--mist); font-size:13px; text-align:center; margin-top:60px;">
-          <span class="i18n" data-en="Type a message below, use @name to mention students." data-ur="نیچے پیغام لکھیں، طلبہ کو @نام سے مینشن کریں۔">Type a message below, use @name to mention students.</span>
-        </p>
-      </div>
-      <div style="position:relative; padding:10px 14px; background:#fff; border-top:1px solid var(--line);">
-        <div id="msgMentionSuggestions" style="display:none; position:absolute; bottom:64px; left:14px; right:14px; background:#fff; border:1px solid var(--line); border-radius:8px; max-height:160px; overflow-y:auto; box-shadow:0 -2px 10px rgba(0,0,0,0.08); z-index:5;"></div>
-        <div style="display:flex; align-items:center; gap:8px; background:#f0f0f0; border-radius:22px; padding:6px 8px 6px 16px;">
-          <input id="msgChatText" type="text" placeholder="Message likhein... @naam" style="flex:1; border:none; background:transparent; outline:none; font-size:14px; padding:8px 0;">
-          <button id="msgChatSendBtn" style="background:#25D366; border:none; width:38px; height:38px; border-radius:50%; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">➤</button>
-        </div>
-      </div>
-    </div>
-
     <div style="text-align:center; margin-top:20px;">
-      <button onclick="lockRecords()" class="btn btn-outline-light" style="cursor:pointer;"><span class="i18n" data-en="🔒 Lock" data-ur="🔒 بند کریں">🔒 Lock</span></button>
+      <button onclick="lockRecords()" class="btn btn-outline" style="border-color:var(--line); color:var(--navy); cursor:pointer;"><span class="i18n" data-en="🔒 Lock" data-ur="🔒 بند کریں">🔒 Lock</span></button>
     </div>
   </div>
 </section>
 
 <footer>
-  Copyright © 2026 <strong>The IIES</strong> — The Iqra Islamic Educational System, Puran, Shangla, KPK, Pakistan
-  <div style="margin-top:14px;">
-    <a href="https://www.facebook.com/profile.php?id=100047533705911" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; color:inherit; text-decoration:none; opacity:.85; font-size:13px;">
-      📘 <span class="i18n" data-en="Follow us on Facebook" data-ur="فیس بک پر ہمیں فالو کریں">Follow us on Facebook</span>
-    </a>
-  </div>
+  © 2026 <strong>The Iqra Islamic Educational System (IIES)</strong> — Puran, Shangla, KPK, Pakistan
   <div style="margin-top:10px; font-size:11.5px; opacity:.7;"><span class="i18n" data-en="👁️ Total Visits:" data-ur="👁️ کل وزٹس:">👁️ Total Visits:</span> <span id="visitCount">…</span></div>
   <div style="margin-top:8px; font-size:11px; opacity:.6;"><a href="#staff-records" class="i18n" data-en="Staff Login" data-ur="عملہ لاگ ان">Staff Login</a></div>
 </footer>
@@ -1323,112 +1188,49 @@
     return div.innerHTML;
   }
 
-  // ---------- General Message (WhatsApp via @mentions) ----------
-  function normalizeParentPhone(parent){
-    var digits = (parent || '').replace(/\D/g, '');
-    if (digits.length === 11 && digits.startsWith('0')) digits = '92' + digits.substring(1);
-    else if (!digits.startsWith('92')) digits = '92' + digits.replace(/^0+/, '');
-    return digits;
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    var msgChatText = document.getElementById('msgChatText');
-    var msgSuggestionBox = document.getElementById('msgMentionSuggestions');
-    if (!msgChatText) return;
-
-    msgChatText.addEventListener('input', function(){
-      var text = msgChatText.value;
-      var cursor = msgChatText.selectionStart;
-      var beforeCursor = text.slice(0, cursor);
-      var match = beforeCursor.match(/@([^@\n]*)$/);
-      if (!match) { msgSuggestionBox.style.display = 'none'; return; }
-      var query = match[1].toLowerCase();
-      var records = getRecords();
-      var matches = records.filter(function(r){ return r.name.toLowerCase().includes(query); });
-      if (matches.length === 0) { msgSuggestionBox.style.display = 'none'; return; }
-      msgSuggestionBox.innerHTML = matches.slice(0, 8).map(function(r){
-        return '<div class="mention-option" data-name="' + escapeHtml(r.name) + '" style="padding:8px 12px; cursor:pointer; border-bottom:1px solid var(--line); font-size:13.5px;">' + escapeHtml(r.name) + ' <span style="color:var(--mist); font-size:11.5px;">(' + escapeHtml(r.cls) + ')</span></div>';
-      }).join('');
-      msgSuggestionBox.style.display = 'block';
-      msgSuggestionBox.querySelectorAll('.mention-option').forEach(function(opt){
-        opt.onclick = function(){
-          var name = opt.dataset.name;
-          var newText = text.slice(0, cursor - match[0].length) + '@' + name + ' ' + text.slice(cursor);
-          msgChatText.value = newText;
-          msgSuggestionBox.style.display = 'none';
-          msgChatText.focus();
-        };
-      });
-    });
-
-    msgChatText.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' && msgSuggestionBox.style.display !== 'block') {
-        e.preventDefault();
-        document.getElementById('msgChatSendBtn').click();
-      }
-    });
-
-    document.getElementById('msgChatSendBtn').onclick = function(){
-      var text = msgChatText.value.trim();
-      if (!text) return;
-      var records = getRecords();
-      var mentioned = records.filter(function(r){ return text.includes('@' + r.name); });
-      var chatArea = document.getElementById('msgChatArea');
-      var emptyMsg = document.getElementById('msgChatEmpty');
-      if (emptyMsg) emptyMsg.remove();
-
-      if (mentioned.length === 0) {
-        chatArea.innerHTML += '<p style="color:#b02a2a; font-size:13px; text-align:center;">Koi student mention nahi hua — @naam likh kar mention karo.</p>';
-        chatArea.scrollTop = chatArea.scrollHeight;
-        return;
-      }
-
-      var now = new Date();
-      var timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-      mentioned.forEach(function(r){
-        var digits = normalizeParentPhone(r.parent);
-        var cleanMsg = text.split('@' + r.name).join(r.name);
-        var bubbleId = 'msgbubble_' + now.getTime() + '_' + Math.floor(Math.random()*10000);
-        var statusHtml;
-        if (!digits) {
-          statusHtml = '<span style="color:#b02a2a;">Koi contact number nahi hai</span>';
-        } else {
-          var waLink = 'https://wa.me/' + digits + '?text=' + encodeURIComponent(cleanMsg);
-          statusHtml = '<a id="' + bubbleId + '" href="' + waLink + '" target="_blank" onclick="document.getElementById(\'' + bubbleId + '\').textContent=\'Sent ✓\'; document.getElementById(\'' + bubbleId + '\').style.color=\'#1b1b1b\'; document.getElementById(\'' + bubbleId + '\').style.fontWeight=\'700\';" style="color:#25D366; font-weight:600; text-decoration:none;">Tap to send ➤</a>';
-        }
-        chatArea.innerHTML += '<div style="max-width:82%; margin-left:auto; margin-bottom:14px;">' +
-          '<div style="background:#dcf8c6; border-radius:14px 14px 2px 14px; padding:10px 14px; font-size:14px; color:#1b1b1b;">' +
-          '<div style="font-size:11.5px; color:var(--navy); font-weight:700; margin-bottom:2px;">To: ' + escapeHtml(r.name) + '</div>' +
-          escapeHtml(cleanMsg) +
-          '</div>' +
-          '<div style="text-align:right; font-size:11px; color:var(--mist); margin-top:3px;">' + timeStr + ' • WhatsApp • ' + statusHtml + '</div>' +
-          '</div>';
-      });
-
-      chatArea.scrollTop = chatArea.scrollHeight;
-      msgChatText.value = '';
-    };
-  });
-
   // ---------- Welcome splash screen ----------
   function dismissSplash(){
     var splash = document.getElementById('splashScreen');
     if (!splash || splash.classList.contains('fade-out')) return;
     splash.classList.add('fade-out');
     document.body.classList.remove('splash-active');
+    document.body.classList.add('hero-animate');
     setTimeout(function(){ splash.style.display = 'none'; }, 650);
   }
-  setTimeout(dismissSplash, 4500);
+  setTimeout(dismissSplash, 2500);
 
-  // Optional voice greeting (best-effort; browsers may block audio until user interacts)
-  try {
-    if ('speechSynthesis' in window) {
-      var greeting = new SpeechSynthesisUtterance('Welcome to The Iqra Islamic Educational System, Puran! Thank you for visiting our site.');
-      greeting.rate = 0.95;
-      window.speechSynthesis.speak(greeting);
+  // ---------- Scroll reveal animation ----------
+  (function(){
+    var selector = [
+      '.section-head', '.iqra-badge', '.intro-grid > p',
+      '.vm-card', '.pillar-card', '.lead-card', '.val-pill',
+      '.two-col .block', '.gallery-item', '.calendar-card',
+      '.news-card', '.info-card', '.staff-card', '.message-card',
+      '.records-box', '.cal-table', '.fb-feed-wrap', '.map-wrap'
+    ].join(', ');
+
+    var els = document.querySelectorAll(selector);
+    els.forEach(function(el, i){
+      el.classList.add('reveal');
+      el.style.transitionDelay = ((i % 6) * 0.08) + 's';
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('in-view'); });
+      return;
     }
-  } catch (e) { /* speech not supported, ignore */ }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function(el){ observer.observe(el); });
+  })();
 </script>
 
 <!-- ============================================================
