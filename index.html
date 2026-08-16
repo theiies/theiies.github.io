@@ -132,6 +132,10 @@
     animation:shimmerText 6s linear infinite;
   }
   @keyframes shimmerText{ to{background-position:-220% center;} }
+  @keyframes textPulseGlow{
+    0%,100%{transform:scale(1); filter:drop-shadow(0 0 0 rgba(201,162,39,0));}
+    50%{transform:scale(1.035); filter:drop-shadow(0 0 14px rgba(201,162,39,0.55));}
+  }
   .hero .short{font-size:13px; letter-spacing:.1em; color:var(--gold); text-transform:uppercase; margin-bottom:22px; font-weight:600;}
   .hero .tagline{
     font-family:'Amiri', serif; font-style:italic;
@@ -177,7 +181,7 @@
     animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo 4s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
   }
   body.hero-animate .eyebrow{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .12s both;}
-  body.hero-animate .hero h1{animation:shimmerText 6s linear infinite, heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
+  body.hero-animate .hero h1{animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite, heroUp .8s cubic-bezier(.2,.7,.25,1) .24s both;}
   body.hero-animate .hero .short{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .34s both;}
   body.hero-animate .hero .tagline{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .44s both;}
   body.hero-animate .hero .loc{animation:heroUp .8s cubic-bezier(.2,.7,.25,1) .54s both;}
@@ -752,10 +756,8 @@
   /* 3D hero logo — depth spin instead of flat float */
   .hero{perspective:700px;}
   @keyframes floatLogo3D{
-    0%,100%{transform:translateY(0) translateZ(0) rotateY(0deg);}
-    25%{transform:translateY(-6px) translateZ(18px) rotateY(14deg);}
-    50%{transform:translateY(-9px) translateZ(28px) rotateY(0deg);}
-    75%{transform:translateY(-6px) translateZ(18px) rotateY(-14deg);}
+    0%,100%{transform:translateY(0) translateZ(0) scale(1);}
+    50%{transform:translateY(-9px) translateZ(34px) scale(1.05);}
   }
   body.hero-animate .hero-logo{
     animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo3D 5s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
