@@ -114,8 +114,8 @@
     text-align:center;
     overflow:hidden;
   }
-  .hero-logo{width:200px; height:200px; border-radius:50%; margin-bottom:26px; box-shadow:0 0 0 4px rgba(201,162,39,0.35), 0 20px 34px rgba(0,0,0,0.45);}
-  @media(max-width:480px){ .hero-logo{width:160px; height:160px;} }
+  .hero-logo{width:250px; height:250px; border-radius:50%; margin-bottom:26px; box-shadow:0 0 0 4px rgba(201,162,39,0.35), 0 20px 34px rgba(0,0,0,0.45);}
+  @media(max-width:480px){ .hero-logo{width:190px; height:190px;} }
   .eyebrow{
     font-size:12px; letter-spacing:.25em; text-transform:uppercase; color:var(--gold);
     margin-bottom:16px; font-weight:600;
@@ -752,10 +752,10 @@
   /* 3D hero logo — depth spin instead of flat float */
   .hero{perspective:700px;}
   @keyframes floatLogo3D{
-    0%,100%{transform:translateY(0) rotateY(0deg);}
-    25%{transform:translateY(-6px) rotateY(14deg);}
-    50%{transform:translateY(-9px) rotateY(0deg);}
-    75%{transform:translateY(-6px) rotateY(-14deg);}
+    0%,100%{transform:translateY(0) translateZ(0) rotateY(0deg);}
+    25%{transform:translateY(-6px) translateZ(18px) rotateY(14deg);}
+    50%{transform:translateY(-9px) translateZ(28px) rotateY(0deg);}
+    75%{transform:translateY(-6px) translateZ(18px) rotateY(-14deg);}
   }
   body.hero-animate .hero-logo{
     animation:heroPop .9s cubic-bezier(.34,1.56,.64,1) both, floatLogo3D 5s ease-in-out .9s infinite, ringPulse 2.6s ease-out .9s infinite;
