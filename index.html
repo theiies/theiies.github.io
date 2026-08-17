@@ -237,8 +237,21 @@
     font-weight:700; margin-bottom:10px;
   }
   .section h2{
-    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700; color:var(--navy);
+    font-family:'Amiri', serif; font-size:clamp(26px,4vw,36px); font-weight:700;
     margin-bottom:14px; position:relative; display:inline-block;
+    background:linear-gradient(100deg, #8a6a1f 0%, #d4af37 30%, #fff3c4 50%, #d4af37 70%, #8a6a1f 100%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:
+      1px 1px 0 #8a6a1f, 2px 2px 0 #7a5c19, 3px 3px 0 #6a4f14,
+      4px 4px 6px rgba(0,0,0,.35), 0 0 18px rgba(212,175,55,.5);
+    animation:shimmerText 6s linear infinite, textPulseGlow 3.4s ease-in-out infinite;
+  }
+  .pillars .section-head h2, .contact .section-head h2{
+    background:linear-gradient(100deg, #8a6a1f 0%, #d4af37 30%, #fff3c4 50%, #d4af37 70%, #8a6a1f 100%);
+    background-size:220% auto; -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:
+      1px 1px 0 #6a4f14, 2px 2px 0 #5a4210, 3px 3px 0 #4a370c,
+      4px 4px 8px rgba(0,0,0,.5), 0 0 20px rgba(255,243,196,.6);
   }
   .section h2::after{
     content:""; position:absolute; left:50%; bottom:-8px; height:3px; width:0;
@@ -743,6 +756,12 @@
     .pillar-card .icon, .val-pill, .calendar-card, .news-card, .info-card, .contact-card, .library-promo-card, .vm-card,
     .btn::before, .section h2::after, .wa-float{
       animation:none !important; transition:none !important;
+    }
+    .section h2{
+      animation:none !important; background:none !important; -webkit-text-fill-color:initial !important; color:#b8860b !important; text-shadow:none !important;
+    }
+    .pillars .section-head h2, .contact .section-head h2{
+      color:#f7e6a8 !important;
     }
   }
   /* ---------- 3D depth system ---------- */
